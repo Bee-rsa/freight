@@ -2,10 +2,10 @@ import logo from '../assets/1000140889-removebg-preview.png'; // Adjust the path
 
 const Footer = () => {
   return (
-    <footer className="bg-custom-blue text-white py-8 w-full"> {/* Set width to 100% */}
+    <footer className="bg-custom-blue text-white py-8 w-full font-poppins"> {/* Add font-poppins here */}
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-start">
         {/* Logo Section */}
-        <img src={logo} alt="Logo" className="h-12 mb-4 -ml-10" /> {/* Adjust height, margin-left, and margin as needed */}
+        <img src={logo} alt="Logo" className="h-12 mb-4 -ml-10" />
 
         {/* Footer Links Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
@@ -103,7 +103,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright and Trademark Notice */}
-        <p className="text-sm text-white mt-4 font-poppins">
+        <p className="text-sm text-white mt-4 font-poppins"> {/* Use font-poppins here as well */}
           © {new Date().getFullYear()} Freight iT ™. All rights reserved.
         </p>
       </div>

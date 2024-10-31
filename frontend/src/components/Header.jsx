@@ -1,18 +1,18 @@
-import { useState } from "react"; // Import useState for dropdown state management
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../store/authStore"; // Adjust the path according to your project structure
+import { useAuthStore } from "../store/authStore";
 
 const Header = () => {
-  const { isLoggedIn, logout } = useAuthStore(); // Using the authStore for authentication
-  const [isDropdownOpen, setIsDropdownOpen] = useState(null); // State for dropdown visibility
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu visibility
+  const { isLoggedIn, logout } = useAuthStore();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleDropdown = (menu) => {
-    setIsDropdownOpen((prev) => (prev === menu ? null : menu)); // Toggle the specific dropdown
+    setIsDropdownOpen((prev) => (prev === menu ? null : menu));
   };
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev); // Toggle mobile menu visibility
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   return (
@@ -65,12 +65,15 @@ const Header = () => {
           className={`fixed inset-0 bg-custom-blue transition-transform transform ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           } md:hidden`}
-          style={{ zIndex: 100 }}
+          style={{ zIndex: 100, right: 0 }}
         >
           <nav className="flex flex-col p-4 space-y-2">
             <Link className="text-white hover:text-gray-400 transition duration-300" to="/products">Products</Link>
+            <hr className="border-t border-gray-400" />
             <Link className="text-white hover:text-gray-400 transition duration-300" to="/business/hub">Business Hub</Link>
+            <hr className="border-t border-gray-400" />
             <Link className="text-white hover:text-gray-400 transition duration-300" to="/resources/docs">Resources</Link>
+            <hr className="border-t border-gray-400" />
             <Link className="text-white hover:text-gray-400 transition duration-300" to="/company/about">Company</Link>
             {isLoggedIn ? (
               <button onClick={logout} className="text-white hover:text-gray-400 transition duration-300">Sign Out</button>
@@ -81,6 +84,25 @@ const Header = () => {
               </>
             )}
           </nav>
+          <button
+            className="absolute top-4 right-4 text-white focus:outline-none"
+            onClick={toggleMobileMenu}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
         </div>
 
         {/* Desktop Navigation Links */}
@@ -113,6 +135,7 @@ const Header = () => {
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/products/item1">
                   Product 1
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/products/item2">
                   Product 2
                 </Link>
@@ -148,27 +171,35 @@ const Header = () => {
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/hub">
                   Business Login in
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Trucking
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Courier Services
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Ocean Freight
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Air Freight
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Rail Freight
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Warehousing
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Operations
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/business/resources">
                   Freight Forwarders
                 </Link>
@@ -204,9 +235,11 @@ const Header = () => {
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/resources/docs">
                   Guides
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/resources/tutorials">
                   Blog
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/resources/tutorials">
                   FAQs
                 </Link>
@@ -242,6 +275,7 @@ const Header = () => {
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/company/about">
                   About Us
                 </Link>
+                <hr className="border-t border-gray-400" />
                 <Link className="block px-4 py-1 text-black hover:bg-gray-100" to="/company/contact">
                   Contact
                 </Link>
@@ -254,7 +288,7 @@ const Header = () => {
             <button onClick={logout} className="text-white hover:text-gray-400 transition duration-300">Sign Out</button>
           ) : (
             <>
-              <Link to="/register" className="text-white hover:text-gray-400 transition duration-300">Register</Link>
+              <Link to="/pricing" className="text-white hover:text-gray-400 transition duration-300">Pricing</Link>
               <Link to="/logins" className="bg-custom-sage text-white font-semibold rounded-lg px-4 py-2 text-base hover:bg-custom-sage transition duration-300 mx-4">Sign In</Link>
             </>
           )}
