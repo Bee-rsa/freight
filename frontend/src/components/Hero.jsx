@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <div className="w-full h-auto min-h-screen flex flex-col items-center bg-custom-blue p-6 pt-20">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-poppins font-bold text-center w-full mb-4 text-white whitespace-normal"> {/* Allow wrapping */}
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-poppins font-bold text-center w-full mb-4 text-white whitespace-normal">
         Seamless Shipping Simplified
       </h1>
       <div className="flex flex-col md:flex-row w-full max-w-screen-xl items-center justify-between">
         
         {/* Text Description and Buttons */}
         <div className="w-full md:w-1/2 p-4 flex flex-col items-center md:items-start text-center md:text-left"> 
-          <h1 className="text-xl sm:text-3xl md:text-4xl font-poppins text-custom-sage mb-2 px-4"> {/* Added padding */}
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-poppins text-custom-sage mb-2 px-4">
             For all your transport needs,<br /> Let Freight iT handle iT.
           </h1>
-          <p className="text-base sm:text-xl font-poppins text-gray-100 mb-4 px-4"> {/* Added padding */}
+          <p className="text-base sm:text-xl font-poppins text-gray-100 mb-4 px-4">
             Freight iT makes shipping simple and seamless. Get instant quotes, book easily, and track shipments in real time - all in one place. Reliable carriers, competitive rates, and a smooth experience every step of the way.
           </p>
           {/* Modern Classy Buttons */}
@@ -37,7 +37,7 @@ const Hero = () => {
           <img
             src={rightImage}
             alt="Right Image"
-            className="w-3/4 md:w-[80%] object-cover" // Adjust width for better fit
+            className="hidden md:block w-3/4 md:w-[80%] object-cover" // Hide on small screens, show on medium and larger
           />
         </div>
       </div>

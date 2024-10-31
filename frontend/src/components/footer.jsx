@@ -1,11 +1,11 @@
-import logo from '../assets/1000140889-removebg-preview.png'; // Adjust the path to your logo image
+import logo from '../assets/Logo.png'; // Adjust the path to your logo image
 
-const footer = () => {
+const Footer = () => {
   return (
     <footer className="bg-custom-blue text-white py-8 w-full font-poppins"> {/* Add font-poppins here */}
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-start">
         {/* Logo Section */}
-        <img src={logo} alt="Logo" className="h-12 mb-4 -ml-10" />
+        <img src={logo} alt="Logo" className="h-10 mb-4 -ml-10" /> {/* Adjusted height to h-10 */}
 
         {/* Footer Links Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
@@ -61,7 +61,7 @@ const footer = () => {
           <div>
             <h2 className="font-bold mb-4 inline-block border-b border-white pb-2">Company</h2>
             <ul>
-              <li><a href="/about-freight-it" className="hover:underline">About Us</a></li>
+              <li><a href="/about-us" className="hover:underline">About Us</a></li>
               <li><a href="/policy" className="hover:underline">Privacy Policy</a></li>
               <li><a href="/terms-and-conditions" className="hover:underline">Terms & Conditions</a></li>
               <li><a href="#" className="hover:underline">Contact Sales Agent</a></li>
@@ -111,4 +111,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;

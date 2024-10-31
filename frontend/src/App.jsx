@@ -8,6 +8,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Pricing from "./pages/Pricing"; // <-- Import Pricing component
+import AboutUs from "./pages/AboutUs"
 
 import LoadingSpinner from "./components/LoadingSpinner";
 
@@ -131,6 +132,9 @@ function App() {
                 />
                 {/* Pricing route */}
                 <Route path='/pricing' element={<Pricing />} />
+
+                {/* Pricing route */}
+                <Route path='/about-us' element={<AboutUs />} />
 
                 {/* Catch all routes */}
                 <Route path='*' element={<Navigate to='/' replace />} />
