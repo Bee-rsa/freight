@@ -1,6 +1,6 @@
 import logo from '../assets/1000140889-removebg-preview.png'; // Adjust the path to your logo image
 
-const Footer = () => {
+const footer = () => {
   return (
     <footer className="bg-custom-blue text-white py-8 w-full"> {/* Set width to 100% */}
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-start">
@@ -111,4 +111,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default footer;
