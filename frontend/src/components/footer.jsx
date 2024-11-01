@@ -49,7 +49,7 @@ const Footer = () => {
             <h2 className="font-bold mb-4 inline-block border-b border-white pb-2">Resources</h2>
             <ul>
               <li><a href="#" className="hover:underline">Guides</a></li>
-              <li><a href="#" className="hover:underline">Blog</a></li>
+              <li><a href="/blog" className="hover:underline">Blog</a></li>
               <li><a href="#" className="hover:underline">Weight Calculator</a></li>
               <li><a href="#" className="hover:underline">Market Updates</a></li>
               <li><a href="#" className="hover:underline">Research</a></li>
@@ -62,7 +62,7 @@ const Footer = () => {
             <h2 className="font-bold mb-4 inline-block border-b border-white pb-2">Company</h2>
             <ul>
               <li><a href="/about-us" className="hover:underline">About Us</a></li>
-              <li><a href="/policy" className="hover:underline">Privacy Policy</a></li>
+              <li><a href="/privacy-policy" className="hover:underline">Privacy Policy</a></li>
               <li><a href="/terms-and-conditions" className="hover:underline">Terms & Conditions</a></li>
               <li><a href="#" className="hover:underline">Contact Sales Agent</a></li>
               <li><a href="#" className="hover:underline">Help Center</a></li>

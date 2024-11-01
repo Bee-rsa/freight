@@ -9,6 +9,9 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Pricing from "./pages/Pricing"; // <-- Import Pricing component
 import AboutUs from "./pages/AboutUs"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
+import TermsAndConditions from "./pages/TermsAndConditions"
+import Blog from "./pages/Blog"
 
 import LoadingSpinner from "./components/LoadingSpinner";
 
@@ -133,8 +136,17 @@ function App() {
                 {/* Pricing route */}
                 <Route path='/pricing' element={<Pricing />} />
 
-                {/* Pricing route */}
+                {/* About Us */}
                 <Route path='/about-us' element={<AboutUs />} />
+
+                {/* Privacy Policy */}
+                <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+
+                {/* Terms & Conditions */}
+                <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
+
+                {/* Blog */}
+                <Route path='/blog' element={<Blog />} />
 
                 {/* Catch all routes */}
                 <Route path='*' element={<Navigate to='/' replace />} />
