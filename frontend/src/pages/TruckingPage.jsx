@@ -1,6 +1,6 @@
 import SignUp from './SignUpPage';
 import Header from "../components/Header"; // Adjust the path as necessary
-import Footer from "../components/footer"; 
+import Footer from "../components/Footer"; 
 
 // Import images
 import image1 from '../assets/logistics-transportation-container-cargo-ship-cargo-plane-with-working-crane-bridge-shipyard-sunrise-logistic-import-export-transport-industry-background-ai-generative_123827-24177.jpg';

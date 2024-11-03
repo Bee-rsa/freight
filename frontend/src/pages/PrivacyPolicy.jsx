@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "../components/Header"; // Adjust the path as necessary
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 const Policy = () => {
   // Scroll to top when the component mounts

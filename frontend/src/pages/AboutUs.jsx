@@ -3,7 +3,7 @@ import freightImage from "../assets/african-american-young-woman-package-deliver
 import additionalImage from "../assets/20241012_010803.jpg";
 import { FaTruck, FaUsers, FaDollarSign, FaRetweet } from 'react-icons/fa';
 import Header from "../components/Header"; // Adjust the path as necessary
-import Footer from "../components/footer"; 
+import Footer from "../components/Footer"; 
 
 const AboutFreightIT = () => {
   const [isOpen, setIsOpen] = useState(false);

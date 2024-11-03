@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 
 // Import images
 import postImage1 from '../assets/blog/aerial-view-container-cargo-ship-sea_335224-719.jpg';
