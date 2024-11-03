@@ -1,65 +1,34 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import FloatingShape from "./components/FloatingShape";
-
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import EmailVerificationPage from "./pages/EmailVerificationPage";
 import DashboardPage from "./pages/DashboardPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-import Pricing from "./pages/Pricing"; // <-- Import Pricing component
-import AboutUs from "./pages/AboutUs"
-import PrivacyPolicy from "./pages/PrivacyPolicy"
-import TermsAndConditions from "./pages/TermsAndConditions"
-import Blog from "./pages/Blog"
-import TruckingPage from "./pages/TruckingPage"
-
+import Pricing from "./pages/Pricing";
+import AboutUs from "./pages/AboutUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import Blog from "./pages/Blog";
+import TruckingPage from "./pages/TruckingPage";
+import UserHome from "./pages/userHome";
 import LoadingSpinner from "./components/LoadingSpinner";
-
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authStore";
 import { useEffect } from "react";
 import PropTypes from 'prop-types';
 
-// Protect routes that require authentication
-const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated, user } = useAuthStore();
-
-    if (!isAuthenticated) {
-        return <Navigate to='/login' replace />;
-    }
-
-    if (!user.isVerified) {
-        return <Navigate to='/verify-email' replace />;
-    }
-
-    return children;
+// Protected Route Component
+const ProtectedRoute = ({ element }) => {
+    const { user } = useAuthStore(); // Get user authentication status
+    return user ? element : <Navigate to="/login" replace />;
 };
 
-// Validate PropTypes for ProtectedRoute
-ProtectedRoute.propTypes = {
-    children: PropTypes.node.isRequired,
-};
-
-// Redirect authenticated users to the home page
-const RedirectAuthenticatedUser = ({ children }) => {
-    const { isAuthenticated, user } = useAuthStore();
-
-    if (isAuthenticated && user.isVerified) {
-        return <Navigate to='/' replace />;
-    }
-
-    return children;
-};
-
-// Validate PropTypes for RedirectAuthenticatedUser
-RedirectAuthenticatedUser.propTypes = {
-    children: PropTypes.node.isRequired,
-};
-
+// Main App Component
 function App() {
     const { isCheckingAuth, checkAuth } = useAuthStore();
-    const location = useLocation(); // Get the current location
+    const location = useLocation();
 
     useEffect(() => {
         checkAuth();
@@ -67,7 +36,6 @@ function App() {
 
     if (isCheckingAuth) return <LoadingSpinner />;
 
-    // Define routes where floating shapes should be displayed
     const showFloatingShapes = [
         '/login',
         '/signup',
@@ -76,14 +44,12 @@ function App() {
         '/verify-email'
     ].includes(location.pathname);
 
-    // Conditional background style
     const containerStyle = location.pathname === '/' 
         ? 'min-h-screen bg-white flex items-center justify-center' 
         : 'min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-emerald-900 flex items-center justify-center relative overflow-hidden';
 
     return (
         <div className={containerStyle}>
-            {/* Conditionally render floating shapes */}
             {showFloatingShapes && (
                 <>
                     <FloatingShape color='bg-green-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
@@ -93,71 +59,30 @@ function App() {
             )}
 
             <Routes>
-                <Route
-                    path='/'
-                    element={
-                        <ProtectedRoute>
-                            <DashboardPage />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path='/signup'
-                    element={
-                        <RedirectAuthenticatedUser>
-                            <SignUpPage />
-                        </RedirectAuthenticatedUser>
-                    }
-                />
-                <Route
-                    path='/login'
-                    element={
-                        <RedirectAuthenticatedUser>
-                            <LoginPage />
-                        </RedirectAuthenticatedUser>
-                    }
-                />
+                <Route path='/' element={<DashboardPage />} /> {/* Public access */}
+                <Route path='/signup' element={<SignUpPage />} />
+                <Route path='/login' element={<LoginPage />} /> {/* Login page */}
                 <Route path='/verify-email' element={<EmailVerificationPage />} />
-                <Route
-                    path='/forgot-password'
-                    element={
-                        <RedirectAuthenticatedUser>
-                            <ForgotPasswordPage />
-                        </RedirectAuthenticatedUser>
-                    }
-                />
-                <Route
-                    path='/reset-password/:token'
-                    element={
-                        <RedirectAuthenticatedUser>
-                            <ResetPasswordPage />
-                        </RedirectAuthenticatedUser>
-                    }
-                />
-                {/* Pricing route */}
+                <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+                <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
                 <Route path='/pricing' element={<Pricing />} />
-
-                {/* About Us */}
                 <Route path='/about-us' element={<AboutUs />} />
-
-                {/* Privacy Policy */}
                 <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-
-                {/* Terms & Conditions */}
                 <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
-
-                {/* Blog */}
                 <Route path='/blog' element={<Blog />} />
-
-                {/* Trucking Page */}
                 <Route path='/trucking-page' element={<TruckingPage />} />
-
-                {/* Catch all routes */}
+                <Route path='/user-home' element={<ProtectedRoute element={<UserHome />} />} /> {/* Protected access */}
                 <Route path='*' element={<Navigate to='/' replace />} />
             </Routes>
+
             <Toaster />
         </div>
     );
 }
+
+// Define PropTypes for ProtectedRoute
+ProtectedRoute.propTypes = {
+    element: PropTypes.element.isRequired, // Ensure 'element' is a React element and is required
+};
 
 export default App;

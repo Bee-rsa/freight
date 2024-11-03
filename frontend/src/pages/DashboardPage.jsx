@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { useAuthStore } from "../store/authStore";
 import Header from "../components/Header"; // Adjust the path as necessary
-import Footer from "../components/footer"; // Make sure this path is correct
+import Footer from "../components/Footer"; // Make sure this path is correct
 import Hero from "../components/Hero"; // Import the Hero component
+// Import the Home component
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from '../assets/Screenshot_20241012_144049_Chrome.jpg';
@@ -12,7 +13,7 @@ import step1Image from '../assets/Freight iT_20240926_155145_0001.png';
 import step2Image from '../assets/Freight iT_20240926_154924_0001.png';
 import step3Image from '../assets/Freight iT_20240926_154659_0001.png';
 
-const Home = () => {
+const HomeSection = () => { // Rename the Home component to HomeSection
   const [activeFAQ, setActiveFAQ] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -122,8 +123,6 @@ const DashboardPage = () => {
 
       <Hero /> {/* Add the Hero component here */}
 
-      <Home /> {/* Insert the Home component here */}
-
       <motion.main
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -137,27 +136,24 @@ const DashboardPage = () => {
 
         <div className="space-y-6">
           <motion.div
-            className="p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            className="p-4 bg-gray-800 bg-opacity-80 border border-gray-600 rounded-md"
+            initial={{ opacity: 0, translateY: 20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-semibold font-poppins text-green-400 mb-3">Welcome, {user.username}!</h3>
-            <p className="text-gray-300 font-poppins">
-              You are logged in. You can manage your bookings and view your account details here.
-            </p>
-            <button
-              onClick={handleLogout}
-              className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded"
-            >
-              Log Out
-            </button>
+            <h3 className="text-lg font-semibold text-custom-blue font-poppins">Welcome back, {user?.name}!</h3>
+            <p className="text-gray-300 font-poppins">Manage your freight services and bookings here.</p>
           </motion.div>
+
+          <button onClick={handleLogout} className="w-full mt-4 bg-red-600 hover:bg-red-700 text-white py-2 rounded">
+            Sign Out
+          </button>
         </div>
       </motion.main>
 
-      {/* Import the Footer at the bottom */}
-      <Footer />
+      <HomeSection /> {/* Add the HomeSection component here */}
+
+      <Footer /> {/* Place the Footer at the bottom */}
     </div>
   );
 };

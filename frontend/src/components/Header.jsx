@@ -29,6 +29,15 @@ const Header = () => {
     setExpandedLink((prev) => (prev === link ? null : link));
   };
 
+  const handleLogout = async () => {
+    try {
+        await logout(); // Call the logout function
+        // Optionally, you can redirect or show a message after logging out
+    } catch (error) {
+        console.error("Logout failed", error);
+    }
+};
+
   return (
     <header className="bg-custom-blue py-2 w-full fixed top-0 left-0 z-50 font-poppins">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -377,11 +386,16 @@ const Header = () => {
 
             {/* Sign In / Sign Out */}
             {isLoggedIn ? (
-              <button onClick={logout} className="text-white hover:text-gray-400 transition duration-300">Sign Out</button>
+              <button
+                        onClick={handleLogout}
+                        className="block py-3 px-6 bg-red-600 rounded-lg text-center hover:bg-red-700 transition"
+                    >
+                        Logout
+                    </button>
             ) : (
               <>
-                <Link to="/pricing" className="text-white hover:text-gray-400 transition duration-300">Pricing</Link>
-                <Link to="/logins" className="bg-custom-sage text-white font-semibold rounded-lg px-4 py-2 text-base hover:bg-custom-sage transition duration-300 mx-4 font-poppins">Sign In</Link>
+                <Link to="/pricing" className="text-white text-xl sm:text-base font-medium hover:text-gray-400 transition duration-300 flex items-center font-poppins">Pricing</Link>
+                <Link to="/login" className="bg-custom-sage text-white font-semibold rounded-lg px-4 py-2 text-base hover:bg-custom-sage transition duration-300 mx-4 font-poppins">Sign In</Link>
               </>
             )}
           </nav>
