@@ -33,7 +33,7 @@ const Footer = () => {
             <ul>
               <li><a href="/sign-in" className="hover:underline">Login in</a></li>
               <li><a href="/pricing" className="hover:underline">Pricing</a></li>
-              <li><a href="#" className="hover:underline">Trucking</a></li>
+              <li><a href="/trucking-page" className="hover:underline">Trucking</a></li>
               <li><a href="#" className="hover:underline">Courier Services</a></li>
               <li><a href="#" className="hover:underline">Ocean Freight</a></li>
               <li><a href="#" className="hover:underline">Air Freight</a></li>

@@ -12,6 +12,7 @@ import AboutUs from "./pages/AboutUs"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
 import TermsAndConditions from "./pages/TermsAndConditions"
 import Blog from "./pages/Blog"
+import TruckingPage from "./pages/TruckingPage"
 
 import LoadingSpinner from "./components/LoadingSpinner";
 
@@ -147,6 +148,9 @@ function App() {
 
                 {/* Blog */}
                 <Route path='/blog' element={<Blog />} />
+
+                {/* Trucking Page */}
+                <Route path='/trucking-page' element={<TruckingPage />} />
 
                 {/* Catch all routes */}
                 <Route path='*' element={<Navigate to='/' replace />} />

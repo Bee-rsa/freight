@@ -132,7 +132,7 @@ const Header = () => {
         {expandedLink === "businessHub" && (
           <div className="ml-6 mt-2 space-y-2 flex flex-col">
             <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Login in</Link>
-            <Link to="/business/hub/subitem2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Trucking</Link>
+            <Link to="/trucking-page" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Trucking</Link>
             <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Courier Services</Link>
             <Link to="/business/hub/subitem2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Ocean Freight</Link>
             <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Air Freight</Link>
@@ -284,7 +284,7 @@ const Header = () => {
                 <div className="absolute right-0 z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/hub">Business Login</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Trucking</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/trucking-page">Trucking</Link>
                   <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Courier Services</Link>
                   <div></div>

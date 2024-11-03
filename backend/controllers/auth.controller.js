@@ -11,10 +11,10 @@ import {
 import { User } from "../models/user.model.js";
 
 export const signup = async (req, res) => {
-	const { email, password, name } = req.body;
+	const { email, password, name, number } = req.body;
 
 	try {
-		if (!email || !password || !name) {
+		if (!email || !password || !name || !number) {
 			throw new Error("All fields are required");
 		}
 
@@ -32,6 +32,7 @@ export const signup = async (req, res) => {
 			email,
 			password: hashedPassword,
 			name,
+			number,
 			verificationToken,
 			verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
 		});
