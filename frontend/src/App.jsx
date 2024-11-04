@@ -13,6 +13,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import Blog from "./pages/Blog";
 import TruckingPage from "./pages/TruckingPage";
 import UserHome from "./pages/userHome";
+import WeightCalculator from "./pages/WeightCalculator";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authStore";
@@ -71,6 +72,7 @@ function App() {
                 <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
                 <Route path='/blog' element={<Blog />} />
                 <Route path='/trucking-page' element={<TruckingPage />} />
+                <Route path='/weight-calculator' element={<WeightCalculator />} />
                 <Route path='/user-home' element={<ProtectedRoute element={<UserHome />} />} /> {/* Protected access */}
                 <Route path='*' element={<Navigate to='/' replace />} />
             </Routes>

@@ -175,6 +175,7 @@ const Header = () => {
             <Link to="/resources/docs/doc1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Market Updates</Link>
             <Link to="/resources/docs/doc2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Research</Link>
             <Link to="/resources/docs/doc1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Case Study</Link>
+            <Link to="/weight-calculator" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Weight Calculator</Link>
           </div>
         )}
       </div>
@@ -339,13 +340,15 @@ const Header = () => {
                 <div className="absolute right-0 z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/resources/docs">Guides</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/">Blog</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/blog">Blog</Link>
                   <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/resources/tutorials">Market Update</Link>
                   <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/resources/tutorials">Research</Link>
                   <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/resources/tutorials">Case Study</Link>
+                  <div></div>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/weight-calculator">Weight Calculator</Link>
                 </div>
               )}
             </div>
@@ -377,7 +380,7 @@ const Header = () => {
                 <div className="absolute right-0 z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/about-us">About Us</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/privacy-policy">Private Policy</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/privacy-policy">Privacy Policy</Link>
                   <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/terms-and-conditions">Terms & Conditions</Link>
                 </div>
