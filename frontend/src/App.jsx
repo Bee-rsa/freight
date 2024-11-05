@@ -20,7 +20,7 @@ import CourierServices from "./pages/CourierServices";
 import AirFreight from "./pages/AirFreight";
 import Warehousing from "./pages/Warehousing";
 import RailFreight from "./pages/RailFreight";
-import Operations from "./pages/Operations";
+import Operations from "./pages/operations";
 import FreightForwarders from "./pages/FreightForwarders";
 import UserHome from "./pages/userHome";
 import OperatorHome from "./pages/operatorHome";
