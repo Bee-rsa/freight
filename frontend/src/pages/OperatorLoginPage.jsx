@@ -12,11 +12,11 @@ const OperatorLoginPage = () => {
 
 	const { operatorLogin, isLoading, error } = useAuthsStore();
 
-	const handleLogin = async (e) => {
+	const handleOperatorLogin = async (e) => {
 		e.preventDefault();
 		const success = await operatorLogin(email, password);
 		if (success) {
-			navigate("/operator-home");
+			navigate("/overview");
 		} else {
 			// Handle login failure, e.g., show an error message
 		}
@@ -34,7 +34,7 @@ const OperatorLoginPage = () => {
 					Welcome Back
 				</h2>
 
-				<form onSubmit={handleLogin}>
+				<form onSubmit={handleOperatorLogin}>
 					<Input
 						icon={Mail}
 						type='email'

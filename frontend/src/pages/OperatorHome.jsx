@@ -8,9 +8,9 @@ const OperatorHome = () => {
     const { operatorLogout } = useAuthsStore();
 
     // Dummy username for the welcome message
-    const operatorName = "Operator"; // Replace with actual user data as needed
+    const operatorname = "Operator"; // Replace with actual user data as needed
 
-    const handleOperatorLogout = async () => {
+    const handleLogout = async () => {
         try {
             await operatorLogout(); // Call the logout function
             // Optionally, you can redirect or show a message after logging out
@@ -24,7 +24,7 @@ const OperatorHome = () => {
             <Header /> {/* Add the Header component here */}
 
             <div className="flex-grow flex flex-col items-center justify-center">
-                <h1 className="text-4xl font-bold mb-4">Welcome, {operatorName}!</h1>
+                <h1 className="text-4xl font-bold mb-4">Welcome, {operatorname}!</h1>
                 <p className="text-lg mb-8">This is your home page. Here’s what you can do:</p>
                 
                 <div className="space-y-4">
@@ -48,7 +48,7 @@ const OperatorHome = () => {
                     </Link>
                     {/* Logout Button */}
                     <button
-                        onClick={handleOperatorLogout}
+                        onClick={handleLogout}
                         className="block py-3 px-6 bg-red-600 rounded-lg text-center hover:bg-red-700 transition"
                     >
                         Logout

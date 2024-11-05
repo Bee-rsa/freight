@@ -20,10 +20,10 @@ import CourierServices from "./pages/CourierServices";
 import AirFreight from "./pages/AirFreight";
 import Warehousing from "./pages/Warehousing";
 import RailFreight from "./pages/RailFreight";
-import Operations from "./pages/operations";
+import Operations from "./pages/Operations";
 import FreightForwarders from "./pages/FreightForwarders";
 import UserHome from "./pages/userHome";
-import OperatorHome from "./pages/operatorHome";
+import OperatorHome from "./pages/OperatorHome";
 import WeightCalculator from "./pages/WeightCalculator";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
@@ -31,11 +31,20 @@ import { useAuthStore } from "./store/authStore";
 import { useAuthsStore } from "./store/authsStore";
 import { useEffect } from "react";
 import PropTypes from 'prop-types';
+import OverviewPage from "./page/OverviewPage";
+import ProductsPage from "./page/ProductsPage";
+import UsersPage from "./page/UsersPage";
+import SalesPage from "./page/SalesPage";
+import OrdersPage from "./page/OrdersPage";
+import AnalyticsPage from "./page/AnalyticsPage";
+import SettingsPage from "./page/SettingsPage";
 
 // Protected Route Component
 const ProtectedRoute = ({ element, role }) => {
-    const { user } = useAuthStore();
+    const { user, isCheckingAuth } = useAuthStore();
     const { operator } = useAuthsStore();
+
+    if (isCheckingAuth) return <LoadingSpinner />; // Show loading spinner while checking auth
 
     if (role === "user") {
         return user ? element : <Navigate to="/login" replace />;
@@ -47,20 +56,20 @@ const ProtectedRoute = ({ element, role }) => {
 
 // Define PropTypes for ProtectedRoute
 ProtectedRoute.propTypes = {
-    element: PropTypes.element.isRequired, // Ensure 'element' is a React element and is required
-    role: PropTypes.string.isRequired // Ensure 'role' is a string and is required
+    element: PropTypes.element.isRequired,
+    role: PropTypes.string.isRequired
 };
 
 // Main App Component
 function App() {
     const { isCheckingAuth, checkAuth } = useAuthStore();
-    const location = useLocation();
+    const location = useLocation(); // To get the current route path
 
     useEffect(() => {
-        checkAuth();
+        checkAuth(); // Check authentication state on mount
     }, [checkAuth]);
 
-    if (isCheckingAuth) return <LoadingSpinner />;
+    if (isCheckingAuth) return <LoadingSpinner />; // Ensure loading spinner shows while checking auth
 
     const showFloatingShapes = [
         '/login',
@@ -87,7 +96,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<DashboardPage />} /> {/* Public access */}
                 <Route path='/signup' element={<SignUpPage />} />
-                <Route path='/login' element={<LoginPage />} /> {/* Login page */}
+                <Route path='/login' element={<LoginPage />} />
                 <Route path='/verify-email' element={<EmailVerificationPage />} />
                 <Route path='/operator-verify-email' element={<OperatorEmailVerificationPage />} />
                 <Route path='/forgot-password' element={<ForgotPasswordPage />} />
@@ -108,9 +117,16 @@ function App() {
                 <Route path='/operator-signup' element={<OperatorSignUpPage />} />
                 <Route path='/freight-forwarders' element={<FreightForwarders />} />
                 <Route path='/weight-calculator' element={<WeightCalculator />} />
+                <Route path='/products' element={<ProductsPage />} />
+                <Route path='/users' element={<UsersPage />} />
+                <Route path='/sales' element={<SalesPage />} /> 
+                <Route path='/orders' element={<OrdersPage />} />
+                <Route path='/analytics' element={<AnalyticsPage />} />
+                <Route path='/settings' element={<SettingsPage />} /> 
 
                 {/* Protected routes for operator */}
                 <Route path='/operator-home' element={<ProtectedRoute element={<OperatorHome />} role="operator" />} />
+                <Route path="/overview" element={<ProtectedRoute element={<OverviewPage />} role="operator" />} />
     
                 {/* Protected routes for user */}
                 <Route path='/user-home' element={<ProtectedRoute element={<UserHome />} role="user" />} />
@@ -122,10 +138,5 @@ function App() {
         </div>
     );
 }
-
-// Define PropTypes for ProtectedRoute
-ProtectedRoute.propTypes = {
-    element: PropTypes.element.isRequired, // Ensure 'element' is a React element and is required
-};
 
 export default App;
