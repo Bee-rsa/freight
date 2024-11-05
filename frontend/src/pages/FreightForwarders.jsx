@@ -33,7 +33,7 @@ const blogPosts = [
   },
 ];
 
-const TruckingPage = () => {
+const FreightForwarders = () => {
   return (
     <div style={pageStyle}>
       <Header />
@@ -340,4 +340,4 @@ const blogLinkStyle = {
   textDecoration: 'none',
 };
 
-export default TruckingPage;
+export default FreightForwarders;

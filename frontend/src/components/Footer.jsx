@@ -1,11 +1,12 @@
-import logo from '../assets/Logo.png'; // Adjust the path to your logo image
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Footer = () => {
   return (
-    <footer className="bg-custom-blue text-white py-8 w-full font-poppins"> {/* Add font-poppins here */}
+    <footer className="bg-custom-blue text-white py-4 w-full font-poppins"> {/* Reduced top padding */}
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-start">
-        {/* Logo Section */}
-        <img src={logo} alt="Logo" className="h-10 mb-4 -ml-10" /> {/* Adjusted height to h-10 */}
+        <div className="text-2xl text-white font-extrabold tracking-tight mb-4"> {/* Added margin bottom */}
+          <Link to="/">Cargo Connect</Link>
+        </div>
 
         {/* Footer Links Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
@@ -34,13 +35,13 @@ const Footer = () => {
               <li><a href="/sign-in" className="hover:underline">Login in</a></li>
               <li><a href="/pricing" className="hover:underline">Pricing</a></li>
               <li><a href="/trucking-page" className="hover:underline">Trucking</a></li>
-              <li><a href="#" className="hover:underline">Courier Services</a></li>
-              <li><a href="#" className="hover:underline">Ocean Freight</a></li>
-              <li><a href="#" className="hover:underline">Air Freight</a></li>
-              <li><a href="#" className="hover:underline">Rail Freight</a></li>
-              <li><a href="#" className="hover:underline">Warehousing</a></li>
-              <li><a href="#" className="hover:underline">Operations</a></li>
-              <li><a href="#" className="hover:underline">Freight Forwarders</a></li>
+              <li><a href="/courier-services" className="hover:underline">Courier Services</a></li>
+              <li><a href="/ocean-freight" className="hover:underline">Ocean Freight</a></li>
+              <li><a href="/air-freight" className="hover:underline">Air Freight</a></li>
+              <li><a href="/rail-freight" className="hover:underline">Rail Freight</a></li>
+              <li><a href="/warehousing" className="hover:underline">Warehousing</a></li>
+              <li><a href="/operations" className="hover:underline">Operations</a></li>
+              <li><a href="/freight-forwarders" className="hover:underline">Freight Forwarders</a></li>
             </ul>
           </div>
 
@@ -103,8 +104,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright and Trademark Notice */}
-        <p className="text-sm text-white mt-4 font-poppins"> {/* Use font-poppins here as well */}
-          © {new Date().getFullYear()} Freight iT ™. All rights reserved.
+        <p className="text-sm text-white mt-4 font-poppins">
+          © {new Date().getFullYear()} Cargo Connect ™. All rights reserved.
         </p>
       </div>
     </footer>

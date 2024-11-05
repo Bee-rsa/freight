@@ -43,7 +43,7 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="text-2xl text-white font-extrabold tracking-tight">
-            <Link to="/">Freight iT</Link>
+            <Link to="/">Cargo Connect</Link>
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -97,7 +97,7 @@ const Header = () => {
               
       <div>
       <div className="text-2xl text-white -mt-2 font-extrabold tracking-tight">
-            <Link to="/">Freight iT</Link>
+            <Link to="/">Cargo Connect</Link>
           </div>
         <div
           className="flex items-center justify-between space-x-2 text-white bg-gray-800 hover:bg-gray-700 rounded-md p-3 transition duration-300 font-poppins mt-8 text-xl font-semibold cursor-pointer"
@@ -140,15 +140,15 @@ const Header = () => {
         </div>
         {expandedLink === "businessHub" && (
           <div className="ml-6 mt-2 space-y-2 flex flex-col">
-            <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Login in</Link>
+            <Link to="/operator-login" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Login in</Link>
             <Link to="/trucking-page" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Trucking</Link>
-            <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Courier Services</Link>
-            <Link to="/business/hub/subitem2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Ocean Freight</Link>
-            <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Air Freight</Link>
-            <Link to="/business/hub/subitem2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Rail Freight</Link>
-            <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Warehousing</Link>
-            <Link to="/business/hub/subitem2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Operations</Link>
-            <Link to="/business/hub/subitem1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Freight Forwarders</Link>
+            <Link to="/courier-services" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Courier Services</Link>
+            <Link to="/ocean-freight" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Ocean Freight</Link>
+            <Link to="/air-freight" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Air Freight</Link>
+            <Link to="/rail-freight" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Rail Freight</Link>
+            <Link to="/warehousing" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Warehousing</Link>
+            <Link to="/operations" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Operations</Link>
+            <Link to="/freight-forwarders" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Freight Forwarders</Link>
           </div>
         )}
       </div>
@@ -292,23 +292,23 @@ const Header = () => {
               </button>
               {isDropdownOpen === 'business' && (
                 <div className="absolute right-0 z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/hub">Business Login</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/operator-login">Business Login</Link>
                   <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/trucking-page">Trucking</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Courier Services</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/courier-services">Courier Services</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Ocean Freight</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/ocean-freight">Ocean Freight</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Air Freight</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/air-freight">Air Freight</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Rail Freight</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/rail-freight">Rail Freight</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Warehousing</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/warehousing">Warehousing</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Operations</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/operations">Operations</Link>
                   <div></div>
-                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/business/resources">Freight Forwarders</Link>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/freight-forwarders">Freight Forwarders</Link>
                 </div>
               )}
             </div>

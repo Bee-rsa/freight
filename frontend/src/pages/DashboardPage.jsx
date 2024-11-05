@@ -45,8 +45,8 @@ const HomeSection = () => { // Rename the Home component to HomeSection
   ];
 
   const faqData = [
-    { question: 'What is Freight iT?', answer: 'Freight iT is a platform designed to simplify your logistics needs by providing easy access to multiple carriers, instant quotes, and real-time shipment tracking.' },
-    { question: 'How will Freight iT help my business?', answer: 'Freight iT helps streamline your shipping process by allowing you to compare rates, manage shipments, and track deliveries all in one place, making logistics hassle-free for your business.' },
+    { question: 'What is Cargo Connect?', answer: 'Cargo Connect is a platform designed to simplify your logistics needs by providing easy access to multiple carriers, instant quotes, and real-time shipment tracking.' },
+    { question: 'How will Cargo Connect help my business?', answer: 'Cargo Connect helps streamline your shipping process by allowing you to compare rates, manage shipments, and track deliveries all in one place, making logistics hassle-free for your business.' },
     { question: 'How do I register and sign up?', answer: 'To sign up, click on "Sign In" in the top right corner and select "Register." Complete the required fields and create your account to start using Freight iT.' },
     { question: 'I forgot my password. What should I do?', answer: 'If you forgot your password, go to the "Sign In" page and click on "Forgot Password." Follow the instructions to reset it.' },
     { question: 'How do I update my profile information?', answer: 'To update your profile, sign in and go to "My Account." From there, you can update your contact details, preferences, and other account information.' },
@@ -58,7 +58,7 @@ const HomeSection = () => { // Rename the Home component to HomeSection
     <div className="w-full p-6">
       <section className="bg-white p-6 mb-8 w-full">
         <h2 className="text-3xl font-bold text-gray-800 mb-4 text-left custom-font font-poppins">
-          How To Transport Your Cargo With Freight iT
+          How To Transport Your Cargo With Cargo Connect:
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[{ img: step1Image, title: 'Register', desc: 'Create an account with Freight iT by providing your email and creating a secure password. This account will allow you to manage your shipments efficiently and access all features of our platform.' },
@@ -93,7 +93,7 @@ const HomeSection = () => { // Rename the Home component to HomeSection
         {faqData.map((faq, index) => (
           <div key={index} className="mb-4 pb-2">
             <h3
-              className="font-poppins text-l text-black-800 cursor-pointer flex justify-between items-center py-2 hover:bg-gray-200 transition duration-200"
+              className="font-poppins text-l text-black-800 font-semibold cursor-pointer flex justify-between items-center py-2 hover:bg-gray-200 transition duration-200"
               onClick={() => toggleFAQ(index)}
             >
               {faq.question}

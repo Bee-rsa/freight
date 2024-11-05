@@ -19,7 +19,7 @@ const Hero = () => {
           </p>
           {/* Modern Classy Buttons */}
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4"> 
-            <Link to="/operator-sign-in">
+            <Link to="/login">
               <button className="bg-custom-sage text-white font-poppins font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 hover:bg-white hover:text-custom-sage border border-custom-sage transform hover:scale-105">
                 Compare Instant Quotes
               </button>

@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useAuthStore } from "../store/authStore";
+import { useAuthsStore } from "../store/authsStore";
 import toast from "react-hot-toast";
 
-const EmailVerificationPage = () => {
+const OperatorEmailVerificationPage = () => {
 	const [code, setCode] = useState(["", "", "", "", "", ""]);
 	const inputRefs = useRef([]);
 	const navigate = useNavigate();
 
-	const { error, isLoading, verifyEmail } = useAuthStore();
+	const { error, isLoading, operatorVerifyEmail } = useAuthsStore();
 
 	const handleChange = (index, value) => {
 		const newCode = [...code];
@@ -43,20 +43,20 @@ const EmailVerificationPage = () => {
 		}
 	};
 
-	// Wrap handleSubmit with useCallback
+	// Use useCallback to memoize handleSubmit and prevent re-creation on every render
 	const handleSubmit = useCallback(
 		async (e) => {
 			e.preventDefault();
 			const verificationCode = code.join("");
 			try {
-				await verifyEmail(verificationCode);
-				navigate("/user-home");
+				await operatorVerifyEmail(verificationCode);
+				navigate("/operator-home");
 				toast.success("Email verified successfully");
 			} catch (error) {
 				console.log(error);
 			}
 		},
-		[code, navigate, verifyEmail]
+		[code, navigate, operatorVerifyEmail]
 	);
 
 	// Auto submit when all fields are filled
@@ -64,7 +64,7 @@ const EmailVerificationPage = () => {
 		if (code.every((digit) => digit !== "")) {
 			handleSubmit(new Event("submit"));
 		}
-	}, [code, handleSubmit]);  // Now handleSubmit is included in the dependency array
+	}, [code, handleSubmit]);
 
 	return (
 		<div className='max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden'>
@@ -110,4 +110,4 @@ const EmailVerificationPage = () => {
 	);
 };
 
-export default EmailVerificationPage;
+export default OperatorEmailVerificationPage;
