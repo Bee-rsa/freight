@@ -1,7 +1,7 @@
 import { BarChart2, DollarSign, Menu, Settings, ShoppingBag, ShoppingCart, TrendingUp, Users, LogOut } from "lucide-react"; 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useState } from "react"; 
+import { AnimatePresence, motion } from "framer-motion"; 
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate here
 import { useAuthsStore } from "../../store/authsStore.js"; // Adjust the import path as necessary
 
 const SIDEBAR_ITEMS = [
@@ -22,11 +22,12 @@ const SIDEBAR_ITEMS = [
 const Sidebar = () => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 	const { operatorLogout } = useAuthsStore(); // Get the logout function from the auth store
+	const navigate = useNavigate(); // Use navigate for redirection
 
-	const handleLogout = async () => {
+	const handleOperatorLogout = async () => {
 		try {
 			await operatorLogout(); // Call the logout function
-			// Optionally, you can add navigation to the login page or show a message
+			navigate("/operator-login"); // Redirect to operator login page after logout
 		} catch (error) {
 			console.error("Logout failed", error);
 		}
@@ -34,12 +35,12 @@ const Sidebar = () => {
 
 	return (
 		<motion.div
-			className={`relative z-10 transition-all text-white duration-300 ease-in-out flex-shrink-0 ${
+			className={`relative z-10 transition-all text-white duration-300 mt-16 ease-in-out flex-shrink-0 ${
 				isSidebarOpen ? "w-64" : "w-20"
 			}`}
 			animate={{ width: isSidebarOpen ? 256 : 80 }}
 		>
-			<div className='h-full bg-custom-blue bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700 font-poppins'> {/* Add font-poppins class */}
+			<div className='h-full bg-custom-blue p-4 flex flex-col border-r border-gray-700 font-poppins'>
 				<motion.button
 					whileHover={{ scale: 1.1 }}
 					whileTap={{ scale: 0.9 }}
@@ -52,7 +53,7 @@ const Sidebar = () => {
 				<nav className='mt-8 flex-grow'>
 					{SIDEBAR_ITEMS.map((item) => (
 						<Link key={item.href} to={item.href}>
-							<motion.div className='flex items-center p-4 text-sm  font-poppins text-white font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2'>
+							<motion.div className='flex items-center p-4 text-sm font-poppins text-white font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2'>
 								<item.icon size={20} style={{ color: item.color, minWidth: "20px" }} />
 								<AnimatePresence>
 									{isSidebarOpen && (
@@ -75,7 +76,7 @@ const Sidebar = () => {
 				{/* Logout Button */}
 				<motion.div 
 					className='flex items-center p-4 text-sm font-poppins text-white font-medium rounded-lg hover:bg-gray-700 transition-colors mb-2 cursor-pointer'
-					onClick={handleLogout}
+					onClick={handleOperatorLogout}
 				>
 					<LogOut size={20} style={{ color: "#FCA5A1", minWidth: "20px" }} />
 					<AnimatePresence>
