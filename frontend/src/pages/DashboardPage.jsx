@@ -1,9 +1,6 @@
-import { motion } from "framer-motion";
-import { useAuthStore } from "../store/authStore";
 import Header from "../components/Header"; // Adjust the path as necessary
 import Footer from "../components/Footer"; // Make sure this path is correct
 import Hero from "../components/Hero"; // Import the Hero component
-// Import the Home component
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from '../assets/Screenshot_20241012_144049_Chrome.jpg';
@@ -13,7 +10,7 @@ import step1Image from '../assets/Freight iT_20240926_155145_0001.png';
 import step2Image from '../assets/Freight iT_20240926_154924_0001.png';
 import step3Image from '../assets/Freight iT_20240926_154659_0001.png';
 
-const HomeSection = () => { // Rename the Home component to HomeSection
+const HomeSection = () => {
   const [activeFAQ, setActiveFAQ] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -60,7 +57,7 @@ const HomeSection = () => { // Rename the Home component to HomeSection
         <h2 className="text-3xl font-bold text-gray-800 mb-4 text-left custom-font font-poppins">
           How To Transport Your Cargo With Cargo Connect:
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-poppins">
           {[{ img: step1Image, title: 'Register', desc: 'Create an account with Freight iT by providing your email and creating a secure password. This account will allow you to manage your shipments efficiently and access all features of our platform.' },
             { img: step2Image, title: 'Get Instant Quotes', desc: 'Once registered, input your shipping details, including the dimensions and weight of your cargo. Our system will provide you with instant quotes from various carriers, ensuring you find the best price and service for your needs.' },
             { img: step3Image, title: 'Book & Track', desc: 'After selecting your preferred carrier based on the quotes, proceed to book your shipment. Make the payment securely and then track your shipment in real-time through our platform until it arrives at its destination.' },
@@ -109,51 +106,13 @@ const HomeSection = () => { // Rename the Home component to HomeSection
   );
 };
 
-const DashboardPage = () => {
-  const { user, logout } = useAuthStore();
-
-  const handleLogout = () => {
-    logout();
-  };
-
+const DashboardPage = () => { 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Import the Header at the top */}
       <Header />
-
-      <Hero /> {/* Add the Hero component here */}
-
-      <motion.main
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-md w-full mx-auto mt-10 p-8 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800 mb-8" // Added mb-8 for margin bottom
-      >
-        <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-600 font-poppins text-transparent bg-clip-text">
-          Dashboard
-        </h2>
-
-        <div className="space-y-6">
-          <motion.div
-            className="p-4 bg-gray-800 bg-opacity-80 border border-gray-600 rounded-md"
-            initial={{ opacity: 0, translateY: 20 }}
-            animate={{ opacity: 1, translateY: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-lg font-semibold text-custom-blue font-poppins">Welcome back, {user?.name}!</h3>
-            <p className="text-gray-300 font-poppins">Manage your freight services and bookings here.</p>
-          </motion.div>
-
-          <button onClick={handleLogout} className="w-full mt-4 bg-red-600 hover:bg-red-700 text-white py-2 rounded">
-            Sign Out
-          </button>
-        </div>
-      </motion.main>
-
-      <HomeSection /> {/* Add the HomeSection component here */}
-
-      <Footer /> {/* Place the Footer at the bottom */}
+      <Hero />
+      <HomeSection />
+      <Footer />
     </div>
   );
 };

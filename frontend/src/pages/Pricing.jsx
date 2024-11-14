@@ -1,4 +1,5 @@
-import { useEffect } from 'react'; 
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -35,7 +36,9 @@ const Pricing = () => {
                 {plan !== "Economy" && <li>✓ {plan === "Premium" ? "Limited to three" : "Unlimited"} service type options</li>}
               </ul>
               <div className="mt-auto w-full">
-                <button className="bg-custom-blue text-white py-2 px-4 rounded-lg w-full">Sign in to access</button>
+                <Link to="/operator-login"> {/* Add Link to /operator-login */}
+                  <button className="bg-custom-blue text-white py-2 px-4 rounded-lg w-full">Sign in to access</button>
+                </Link>
               </div>
             </div>
           ))}

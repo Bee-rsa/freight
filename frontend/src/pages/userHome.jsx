@@ -1,62 +1,48 @@
-import { Link } from "react-router-dom";
-import { useAuthStore } from "../store/authStore"; // Adjust the path as needed
-import Header from "../components/Header"; // Adjust the path as necessary
-import Footer from "../components/Footer"; // Adjust the path as necessary
+import Header from "../components/userHeader"; // Adjust the path as necessary
+import Searchbar from "../components/SearchBar"; // Adjust the path as necessary
 
 const UserHome = () => {
-    // Get the logout function from the auth store
-    const { logout } = useAuthStore();
-
-    // Dummy username for the welcome message
-    const username = "User"; // Replace with actual user data as needed
-
-    const handleLogout = async () => {
-        try {
-            await logout(); // Call the logout function
-            // Optionally, you can redirect or show a message after logging out
-        } catch (error) {
-            console.error("Logout failed", error);
-        }
-    };
-
     return (
-        <div className="min-h-screen bg-gray-900 text-white flex flex-col">
-            <Header /> {/* Add the Header component here */}
+        <div className="w-full h-auto min-h-screen flex flex-col items-center bg-custom-blue p-6 pt-20">
+         <Header />
+            <Searchbar />
 
-            <div className="flex-grow flex flex-col items-center justify-center">
-                <h1 className="text-4xl font-bold mb-4">Welcome, {username}!</h1>
-                <p className="text-lg mb-8">This is your home page. Here’s what you can do:</p>
-                
-                <div className="space-y-4">
-                    <Link
-                        to="/profile"
-                        className="block py-3 px-6 bg-green-600 rounded-lg text-center hover:bg-green-700 transition"
-                    >
-                        View Profile
-                    </Link>
-                    <Link
-                        to="/dashboard"
-                        className="block py-3 px-6 bg-blue-600 rounded-lg text-center hover:bg-blue-700 transition"
-                    >
-                        Go to Dashboard
-                    </Link>
-                    <Link
-                        to="/settings"
-                        className="block py-3 px-6 bg-purple-600 rounded-lg text-center hover:bg-purple-700 transition"
-                    >
-                        Account Settings
-                    </Link>
-                    {/* Logout Button */}
-                    <button
-                        onClick={handleLogout}
-                        className="block py-3 px-6 bg-red-600 rounded-lg text-center hover:bg-red-700 transition"
-                    >
-                        Logout
-                    </button>
+            {/* Main Content with three containers side by side */}
+            <div className="flex justify-around w-full max-w-6xl mt-24 space-x-12">
+                {/* Manage Shipments Container */}
+                <div className="bg-white rounded-lg shadow-md p-6 w-1/3">
+                    <h2 className="text-2xl font-semibold mb-4">Manage your shipments</h2>
+                    <p className="text-gray-700 mb-4">
+                        Once you make your first booking, we make it easy to manage your shipment.
+                    </p>
+                    <ul className="space-y-2 text-gray-600">
+                        <li>Booked</li>
+                        <li>In transit</li>
+                        <li>Delivered</li>
+                    </ul>
+                </div>
+
+                {/* Manage Payments Container */}
+                <div className="bg-white rounded-lg shadow-md p-6 w-1/3">
+                    <h2 className="text-2xl font-semibold mb-4">Manage your payments</h2>
+                    <p className="text-gray-700 mb-4">
+                        Once you book a shipment, stay up-to-date on your bills and payments.
+                    </p>
+                    <ul className="space-y-2 text-gray-600">
+                        <li>Open</li>
+                        <li>Payment due</li>
+                        <li>Paid in full</li>
+                    </ul>
+                </div>
+
+                {/* Freightos Credit Container */}
+                <div className="bg-white rounded-lg shadow-md p-6 w-1/3">
+                    <h2 className="text-2xl font-semibold mb-4">Freightos credit</h2>
+                    <p className="text-gray-700 mb-4">
+                        Based in the US, UK, or Canada? Take advantage of our generous credit terms. More info?
+                    </p>
                 </div>
             </div>
-
-            <Footer /> {/* Add the Footer component here */}
         </div>
     );
 };
