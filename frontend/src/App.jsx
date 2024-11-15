@@ -23,6 +23,8 @@ import RailFreight from "./pages/RailFreight";
 import Operations from "./pages/Operations";
 import FreightForwarders from "./pages/FreightForwarders";
 import UserHome from "./pages/userHome";
+import MyShipments from "./pages/MyShipments"
+import TrackMyOrder from "./pages/TrackMyOrder"
 import OperatorHome from "./pages/OperatorHome";
 import WeightCalculator from "./pages/WeightCalculator";
 import LoadingSpinner from "./components/LoadingSpinner";
@@ -120,6 +122,8 @@ function App() {
                 <Route path='/products' element={<ProductsPage />} />
                 <Route path='/users' element={<UsersPage />} />
                 <Route path='/sales' element={<SalesPage />} /> 
+                <Route path='/my-shipments' element={<MyShipments />} />
+                <Route path='/track-my-order' element={<TrackMyOrder />} />  
                 <Route path='/orders' element={<OrdersPage />} />
                 <Route path='/analytics' element={<AnalyticsPage />} />
                 <Route path='/settings' element={<SettingsPage />} /> 
@@ -130,6 +134,8 @@ function App() {
     
                 {/* Protected routes for user */}
                 <Route path='/user-home' element={<ProtectedRoute element={<UserHome />} role="user" />} />
+                <Route path='/my-shipments' element={<ProtectedRoute element={<MyShipments />} role="user" />} />
+                <Route path='/track-my-order' element={<ProtectedRoute element={<TrackMyOrder />} role="user" />} />
 
                 <Route path='*' element={<Navigate to='/' replace />} />
             </Routes>

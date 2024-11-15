@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FaUser, FaCog, FaBell, FaQuestionCircle, FaSignOutAlt } from 'react-icons/fa';
+import { FaUser, FaCog, FaBell, FaQuestionCircle, FaSignOutAlt, FaShippingFast } from 'react-icons/fa';
 import { useAuthStore } from '../store/authStore.js';
 
 const Header = ({ isUser }) => {
@@ -53,10 +53,10 @@ const Header = ({ isUser }) => {
 
         <div className="flex items-center space-x-8">
           {/* Text Links for My Shipments and Track My Order, hidden on small screens */}
-          <Link to="/profile" className="hidden md:block text-white text-m font-poppins">
+          <Link to="/my-shipments" className="hidden md:block text-white text-m font-poppins">
             My Shipments
           </Link>
-          <Link to="/track-order" className="hidden md:block text-white text-m font-poppins">
+          <Link to="/track-my-order" className="hidden md:block text-white text-m font-poppins">
             Track My Order
           </Link>
 
@@ -89,13 +89,13 @@ const Header = ({ isUser }) => {
             </div>
             <ul className="py-1">
               <li className="hover:bg-gray-100">
-                <Link to="/profile" className="flex items-center px-4 py-2 text-m text-gray-700 font-poppins">
+                <Link to="/my-shipments" className="flex items-center px-4 py-2 text-m text-gray-700 font-poppins">
                   <FaUser className="mr-2" /> Shipments
                 </Link>
               </li>
               <li className="hover:bg-gray-100">
-                <Link to="/track-order" className="flex items-center px-4 py-2 text-m text-gray-700 font-poppins">
-                  <FaUser className="mr-2" /> Track My Order
+                <Link to="/track-my-order" className="flex items-center px-4 py-2 text-m text-gray-700 font-poppins">
+                  <FaShippingFast className="mr-2" /> Track My Order
                 </Link>
               </li>
               <li className="hover:bg-gray-100">

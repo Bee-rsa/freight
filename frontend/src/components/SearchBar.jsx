@@ -77,13 +77,13 @@ const SearchBar = () => {
         </p>
 
         {/* Extended Search Bar */}
-        <div className="w-full bg-white text-black rounded-lg shadow-md p-4 flex flex-col sm:flex-row flex-wrap gap-4">
+        <div className="w-full bg-white text-black rounded-lg shadow-md p-4 sm:w-50% sm:p-4 flex flex-col sm:flex-row flex-wrap gap-4">
           {/* Origin with Dropdown */}
           <div className="relative flex-1" ref={dropdownRef}>
             <input
               type="text"
               placeholder="Origin"
-              className="w-full px-3 py-2 cursor-pointer"
+              className="w-full bg-transparent px-3  p-4 py-2 cursor-pointer"
               value={type && country ? `${type} in ${country}` : ''}
               onClick={handleOriginClick}
             />
