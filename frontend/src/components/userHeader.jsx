@@ -10,6 +10,7 @@ const Header = ({ isUser }) => {
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+  const toggleButtonRef = useRef(null);
 
   const handleLogout = async () => {
     try {
@@ -22,7 +23,13 @@ const Header = ({ isUser }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      // Close dropdown only if the click is outside the dropdown and toggle button
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target)
+      ) {
         setDropdownOpen(false);
       }
     };
@@ -55,6 +62,7 @@ const Header = ({ isUser }) => {
 
           <div
             className="cursor-pointer flex flex-col justify-between items-center w-7 h-7"
+            ref={toggleButtonRef}
             onClick={toggleMenu}
           >
             <div className="w-6 h-1 bg-white mb-1"></div>
