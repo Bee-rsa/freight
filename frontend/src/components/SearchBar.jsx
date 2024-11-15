@@ -8,28 +8,23 @@ import {
   FaBuilding,
 } from 'react-icons/fa';
 
-// Example country data (You can add more countries and flags)
 const countries = [
   { name: 'United States', code: 'US', flag: '🇺🇸' },
   { name: 'Canada', code: 'CA', flag: '🇨🇦' },
   { name: 'United Kingdom', code: 'GB', flag: '🇬🇧' },
   { name: 'Australia', code: 'AU', flag: '🇦🇺' },
   { name: 'Germany', code: 'DE', flag: '🇩🇪' },
-  // Add more countries here
 ];
 
 const SearchBar = () => {
-  // State to toggle the visibility of dropdowns
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
-  const [type, setType] = useState(''); // State to hold the selected Type value
-  const [country, setCountry] = useState(''); // State to hold the selected Country value
-  const [address, setAddress] = useState(''); // State to hold the Address input
+  const [type, setType] = useState('');
+  const [country, setCountry] = useState('');
+  const [address, setAddress] = useState('');
+  const dropdownRef = useRef(null);
 
-  const dropdownRef = useRef(null); // Reference for the dropdown container
-
-  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -45,35 +40,30 @@ const SearchBar = () => {
     };
   }, []);
 
-  // Handle clicking on the Origin field to toggle the main dropdown
   const handleOriginClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    setIsTypeDropdownOpen(false); // Close type dropdown when origin is clicked
-    setIsCountryDropdownOpen(false); // Close country dropdown when origin is clicked
+    setIsTypeDropdownOpen(false);
+    setIsCountryDropdownOpen(false);
   };
 
-  // Handle clicking on "Type" to toggle the sub-dropdown
   const handleTypeClick = () => {
     setIsTypeDropdownOpen(!isTypeDropdownOpen);
-    setIsCountryDropdownOpen(false); // Close country dropdown when type is clicked
+    setIsCountryDropdownOpen(false);
   };
 
-  // Handle selecting a Type option
   const handleTypeSelect = (selectedType) => {
-    setType(selectedType); // Update the "Type" input field with the selected option
-    setIsTypeDropdownOpen(false); // Close the dropdown after selection
+    setType(selectedType);
+    setIsTypeDropdownOpen(false);
   };
 
-  // Handle clicking on "Country" to toggle the country dropdown
   const handleCountryClick = () => {
     setIsCountryDropdownOpen(!isCountryDropdownOpen);
-    setIsTypeDropdownOpen(false); // Close type dropdown when country is clicked
+    setIsTypeDropdownOpen(false);
   };
 
-  // Handle selecting a Country
   const handleCountrySelect = (selectedCountry) => {
-    setCountry(selectedCountry); // Update the "Country" input field with the selected country
-    setIsCountryDropdownOpen(false); // Close the dropdown after selection
+    setCountry(selectedCountry);
+    setIsCountryDropdownOpen(false);
   };
 
   return (
@@ -188,7 +178,7 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Destination"
-            className="flex-1 px-3 py-2"
+            className="flex-1 sm:flex-none px-3 py-2"
           />
           <div className="flex items-center justify-center">
             <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
@@ -196,7 +186,7 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Load"
-            className="flex-1 px-3 py-2"
+            className="flex-1 sm:flex-none px-3 py-2"
           />
           <div className="flex items-center justify-center">
             <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
@@ -204,7 +194,7 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Goods"
-            className="flex-1 px-3 py-2"
+            className="flex-1 sm:flex-none px-3 py-2"
           />
 
           {/* Search Button */}
