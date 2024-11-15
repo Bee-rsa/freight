@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import PropTypes from "prop-types"; // Import PropTypes
 
-const FloatingShape = ({ color, size, top, left, delay }) => {
+const FloatingShape = ({ color = "bg-blue-500", size, top, left, delay }) => {
   return (
     <motion.div
       className={`absolute rounded-full ${color} ${size} opacity-20 blur-xl`}
@@ -24,7 +24,7 @@ const FloatingShape = ({ color, size, top, left, delay }) => {
 
 // Define prop types
 FloatingShape.propTypes = {
-  color: PropTypes.string.isRequired, // Expecting a string for color
+  color: PropTypes.string, // Expecting a string for color
   size: PropTypes.string.isRequired, // Expecting a string for size
   top: PropTypes.string.isRequired, // Expecting a string for top position
   left: PropTypes.string.isRequired, // Expecting a string for left position
