@@ -93,7 +93,7 @@ const SearchBar = () => {
             <input
               type="text"
               placeholder="Origin"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md cursor-pointer"
+              className="w-full px-3 py-2 cursor-pointer"
               value={type && country ? `${type} in ${country}` : ''}
               onClick={handleOriginClick}
             />
@@ -179,21 +179,32 @@ const SearchBar = () => {
             )}
           </div>
 
+          {/* Vertical Line Separator (Hidden in Mobile View) */}
+          <div className="flex items-center justify-center">
+            <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
+          </div>
+
           {/* Destination, Load, Goods Fields */}
           <input
             type="text"
             placeholder="Destination"
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
+            className="flex-1 px-3 py-2"
           />
+          <div className="flex items-center justify-center">
+            <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
+          </div>
           <input
             type="text"
             placeholder="Load"
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
+            className="flex-1 px-3 py-2"
           />
+          <div className="flex items-center justify-center">
+            <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
+          </div>
           <input
             type="text"
             placeholder="Goods"
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md"
+            className="flex-1 px-3 py-2"
           />
 
           {/* Search Button */}
