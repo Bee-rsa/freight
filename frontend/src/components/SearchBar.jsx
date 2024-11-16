@@ -9,11 +9,11 @@ import {
 } from 'react-icons/fa';
 
 const countries = [
-  { name: 'United States', code: 'US', flag: '🇺🇸' },
-  { name: 'Canada', code: 'CA', flag: '🇨🇦' },
-  { name: 'United Kingdom', code: 'GB', flag: '🇬🇧' },
-  { name: 'Australia', code: 'AU', flag: '🇦🇺' },
-  { name: 'Germany', code: 'DE', flag: '🇩🇪' },
+  { name: 'United States', code: 'US', flag: '' },
+  { name: 'Canada', code: 'CA', flag: '' },
+  { name: 'United Kingdom', code: 'GB', flag: '' },
+  { name: 'Australia', code: 'AU', flag: '' },
+  { name: 'Germany', code: 'DE', flag: '' },
 ];
 
 const SearchBar = () => {
@@ -68,6 +68,35 @@ const SearchBar = () => {
 
   return (
     <div className="w-full flex flex-col items-center bg-custom-blue text-white font-poppins">
+      <style>
+        {`
+          /* Mobile Styles */
+          @media only screen and (max-width: 768px) {
+            .search-bar {
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .search-bar input[type='text'] {
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 10px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            }
+
+            .search-bar .dropdown {
+              position: static;
+              width: 100%;
+            }
+
+            .vertical-separator {
+              display: none;
+            }
+          }
+        `}
+      </style>
+
       <div className="w-full max-w-7xl px-4 py-8 flex flex-col items-center text-center">
         <h1 className="text-xl sm:text-2xl md:text-4xl font-bold mb-4">
           Where would you like to ship?
@@ -76,14 +105,12 @@ const SearchBar = () => {
           Start searching to compare, book, and manage your freight, all on one platform.
         </p>
 
-        {/* Extended Search Bar */}
-        <div className="w-full bg-white text-black rounded-lg shadow-md p-4 sm:w-50% sm:p-4 flex flex-col sm:flex-row flex-wrap gap-4">
-          {/* Origin with Dropdown */}
+        <div className="search-bar w-full bg-white text-black rounded-lg shadow-md p-4 sm:w-50% sm:p-4 flex flex-col sm:flex-row flex-wrap gap-4">
           <div className="relative flex-1" ref={dropdownRef}>
             <input
               type="text"
               placeholder="Origin"
-              className="w-full bg-transparent px-3  p-4 py-2 cursor-pointer"
+              className="w-full bg-transparent px-3 p-4 py-2 cursor-pointer"
               value={type && country ? `${type} in ${country}` : ''}
               onClick={handleOriginClick}
             />
@@ -169,27 +196,25 @@ const SearchBar = () => {
             )}
           </div>
 
-          {/* Vertical Line Separator (Hidden in Mobile View) */}
-          <div className="flex items-center justify-center">
-            <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
+          <div className="vertical-separator flex items-center justify-center hidden sm:block">
+            <span className="text-xl mx-4 text-gray-400">|</span>
           </div>
 
-          {/* Destination, Load, Goods Fields */}
           <input
             type="text"
             placeholder="Destination"
             className="flex-1 sm:flex-none px-3 py-2"
           />
-          <div className="flex items-center justify-center">
-            <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
+          <div className="vertical-separator flex items-center justify-center hidden sm:block">
+            <span className="text-xl mx-4 text-gray-400">|</span>
           </div>
           <input
             type="text"
             placeholder="Load"
             className="flex-1 sm:flex-none px-3 py-2"
           />
-          <div className="flex items-center justify-center">
-            <span className="text-xl hidden sm:block mx-4 text-gray-400">|</span>
+          <div className="vertical-separator flex items-center justify-center hidden sm:block">
+            <span className="text-xl mx-4 text-gray-400">|</span>
           </div>
           <input
             type="text"
@@ -197,7 +222,6 @@ const SearchBar = () => {
             className="flex-1 sm:flex-none px-3 py-2"
           />
 
-          {/* Search Button */}
           <button className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-md font-semibold flex items-center justify-center">
             <FaSearch className="mr-2" />
             Search

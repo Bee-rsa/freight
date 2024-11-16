@@ -8,7 +8,7 @@ import { useAuthStore } from "../store/authStore";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Step 1: Get the navigate function
+  const navigate = useNavigate();
 
   const { login, isLoading, error } = useAuthStore();
 
@@ -26,14 +26,35 @@ const LoginPage = () => {
     <div
       className="min-h-screen w-full flex justify-center items-center"
       style={{
-        backgroundImage: "linear-gradient(135deg, #1B2E52 0%, #5185AB 100%)", // Gradient background
+        backgroundImage: "linear-gradient(135deg, #1B2E52 0%, #5185AB 100%)",
       }}
     >
+      <style>
+        {`
+          /* Mobile Styles */
+          @media only screen and (max-width: 768px) {
+            .search-bar {
+              padding: 0 20px;
+            }
+
+            .max-w-md {
+              margin: 20px;
+            }
+
+            .p-8 {
+              padding: 20px;
+            }
+          }
+
+          /* Desktop Styles remain unchanged */
+        `}
+      </style>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden"
+        className="max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden p-8 sm:p-6"
       >
         <div className="p-8 sm:p-6">
           <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-700 to-blue-900 text-transparent bg-clip-text">

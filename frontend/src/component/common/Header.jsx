@@ -37,38 +37,38 @@ const Header = ({ isOperator }) => {
           />
           {/* Dropdown Menu */}
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md font-poppins shadow-lg z-50">
               <ul className="py-1">
                 <li className="hover:bg-gray-100">
-                  <Link to="/profile" className="flex items-center px-4 py-2 text-sm text-gray-700">
+                  <Link to="/profile" className="flex items-center px-4 py-2 text-m text-gray-700">
                     <FaUser className="mr-2" /> View Profile
                   </Link>
                 </li>
                 <li className="hover:bg-gray-100">
-                  <Link to="/account-settings" className="flex items-center px-4 py-2 text-sm text-gray-700">
+                  <Link to="/account-settings" className="flex items-center px-4 py-2 text-m text-gray-700">
                     <FaCog className="mr-2" /> Account Settings
                   </Link>
                 </li>
                 <li className="hover:bg-gray-100">
-                  <Link to="/notifications" className="flex items-center px-4 py-2 text-sm text-gray-700">
+                  <Link to="/notifications" className="flex items-center px-4 py-2 text-m text-gray-700">
                     <FaBell className="mr-2" /> Notifications
                   </Link>
                 </li>
                 <li className="hover:bg-gray-100">
-                  <Link to="/help-center" className="flex items-center px-4 py-2 text-sm text-gray-700">
+                  <Link to="/help-center" className="flex items-center px-4 py-2 text-m text-gray-700">
                     <FaQuestionCircle className="mr-2" /> Help Center
                   </Link>
                 </li>
                 {/* Conditional rendering based on isOperator */}
                 {isOperator ? (
                   <li className="hover:bg-gray-100">
-                    <Link to="/operator-dashboard" className="flex items-center px-4 py-2 text-sm text-gray-700">
+                    <Link to="/operator-dashboard" className="flex items-center px-4 py-2 text-m text-gray-700">
                       <FaCog className="mr-2" /> Operator Dashboard
                     </Link>
                   </li>
                 ) : (
                   <li className="hover:bg-gray-100">
-                    <Link to="/user-dashboard" className="flex items-center px-4 py-2 text-sm text-gray-700">
+                    <Link to="/user-dashboard" className="flex items-center px-4 py-2 text-m text-gray-700">
                       <FaCog className="mr-2" /> User Dashboard
                     </Link>
                   </li>
