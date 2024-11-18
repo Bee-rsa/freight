@@ -36,3 +36,5 @@ const operatorSchema = new mongoose.Schema(
 );
 
 export const Operator = mongoose.model("Operator", operatorSchema);
+
+export default Operator;

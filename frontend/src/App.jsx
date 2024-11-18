@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
 import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query"; // Import necessary components from React Query
+
+// Import your other components and pages
 import FloatingShape from "./components/FloatingShape";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
@@ -31,15 +35,18 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authStore";
 import { useAuthsStore } from "./store/authsStore";
-import { useEffect } from "react";
 import PropTypes from 'prop-types';
 import OverviewPage from "./page/OverviewPage";
 import ProductsPage from "./page/ProductsPage";
 import UsersPage from "./page/UsersPage";
 import SalesPage from "./page/SalesPage";
 import OrdersPage from "./page/OrdersPage";
+import AddServices from "./page/AddServices";
 import AnalyticsPage from "./page/AnalyticsPage";
 import SettingsPage from "./page/SettingsPage";
+
+// Create the QueryClient instance
+const queryClient = new QueryClient();
 
 // Protected Route Component
 const ProtectedRoute = ({ element, role }) => {
@@ -86,62 +93,67 @@ function App() {
         : 'min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-emerald-900 flex items-center justify-center relative overflow-hidden';
 
     return (
-        <div className={containerStyle}>
-            {showFloatingShapes && (
-                <>
-                    <FloatingShape color='bg-green-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
-                    <FloatingShape color='bg-emerald-500' size='w-48 h-48' top='70%' left='80%' delay={5} />
-                    <FloatingShape color='bg-lime-500' size='w-32 h-32' top='40%' left='-10%' delay={2} />
-                </>
-            )}
+        <QueryClientProvider client={queryClient}> {/* Wrap your app here */}
+            <div className={containerStyle}>
+                {showFloatingShapes && (
+                    <>
+                        <FloatingShape color='bg-green-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
+                        <FloatingShape color='bg-emerald-500' size='w-48 h-48' top='70%' left='80%' delay={5} />
+                        <FloatingShape color='bg-lime-500' size='w-32 h-32' top='40%' left='-10%' delay={2} />
+                    </>
+                )}
 
-            <Routes>
-                <Route path='/' element={<DashboardPage />} /> {/* Public access */}
-                <Route path='/signup' element={<SignUpPage />} />
-                <Route path='/login' element={<LoginPage />} />
-                <Route path='/verify-email' element={<EmailVerificationPage />} />
-                <Route path='/operator-verify-email' element={<OperatorEmailVerificationPage />} />
-                <Route path='/forgot-password' element={<ForgotPasswordPage />} />
-                <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
-                <Route path='/pricing' element={<Pricing />} />
-                <Route path='/about-us' element={<AboutUs />} />
-                <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-                <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
-                <Route path='/blog' element={<Blog />} />
-                <Route path='/trucking-page' element={<TruckingPage />} />
-                <Route path='/ocean-freight' element={<OceanFreight />} />
-                <Route path='/courier-services' element={<CourierServices />} />
-                <Route path='/air-freight' element={<AirFreight />} />
-                <Route path='/warehousing' element={<Warehousing />} />
-                <Route path='/rail-freight' element={<RailFreight />} />
-                <Route path='/operations' element={<Operations />} />
-                <Route path='/operator-login' element={<OperatorLoginPage />} />
-                <Route path='/operator-signup' element={<OperatorSignUpPage />} />
-                <Route path='/freight-forwarders' element={<FreightForwarders />} />
-                <Route path='/weight-calculator' element={<WeightCalculator />} />
-                <Route path='/products' element={<ProductsPage />} />
-                <Route path='/users' element={<UsersPage />} />
-                <Route path='/sales' element={<SalesPage />} /> 
-                <Route path='/my-shipments' element={<MyShipments />} />
-                <Route path='/track-my-order' element={<TrackMyOrder />} />  
-                <Route path='/orders' element={<OrdersPage />} />
-                <Route path='/analytics' element={<AnalyticsPage />} />
-                <Route path='/settings' element={<SettingsPage />} /> 
+                <Routes>
+                    {/* Public Routes */}
+                    <Route path='/' element={<DashboardPage />} />
+                    <Route path='/signup' element={<SignUpPage />} />
+                    <Route path='/login' element={<LoginPage />} />
+                    <Route path='/verify-email' element={<EmailVerificationPage />} />
+                    <Route path='/operator-verify-email' element={<OperatorEmailVerificationPage />} />
+                    <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+                    <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
+                    <Route path='/pricing' element={<Pricing />} />
+                    <Route path='/about-us' element={<AboutUs />} />
+                    <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+                    <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
+                    <Route path='/blog' element={<Blog />} />
+                    <Route path='/trucking-page' element={<TruckingPage />} />
+                    <Route path='/ocean-freight' element={<OceanFreight />} />
+                    <Route path='/courier-services' element={<CourierServices />} />
+                    <Route path='/air-freight' element={<AirFreight />} />
+                    <Route path='/warehousing' element={<Warehousing />} />
+                    <Route path='/rail-freight' element={<RailFreight />} />
+                    <Route path='/operations' element={<Operations />} />
+                    <Route path='/operator-login' element={<OperatorLoginPage />} />
+                    <Route path='/operator-signup' element={<OperatorSignUpPage />} />
+                    <Route path='/freight-forwarders' element={<FreightForwarders />} />
+                    <Route path='/weight-calculator' element={<WeightCalculator />} />
+                    <Route path='/products' element={<ProductsPage />} />
+                    <Route path='/users' element={<UsersPage />} />
+                    <Route path='/sales' element={<SalesPage />} />
+                    <Route path='/my-shipments' element={<MyShipments />} />
+                    <Route path='/track-my-order' element={<TrackMyOrder />} />
+                    <Route path='/orders' element={<OrdersPage />} />
+                    <Route path='/analytics' element={<AnalyticsPage />} />
+                    <Route path='/settings' element={<SettingsPage />} />
 
-                {/* Protected routes for operator */}
-                <Route path='/operator-home' element={<ProtectedRoute element={<OperatorHome />} role="operator" />} />
-                <Route path="/overview" element={<ProtectedRoute element={<OverviewPage />} role="operator" />} />
-    
-                {/* Protected routes for user */}
-                <Route path='/user-home' element={<ProtectedRoute element={<UserHome />} role="user" />} />
-                <Route path='/my-shipments' element={<ProtectedRoute element={<MyShipments />} role="user" />} />
-                <Route path='/track-my-order' element={<ProtectedRoute element={<TrackMyOrder />} role="user" />} />
+                    {/* Protected routes for operator */}
+                    <Route path='/operator-home' element={<ProtectedRoute element={<OperatorHome />} role="operator" />} />
+                    <Route path="/overview" element={<ProtectedRoute element={<OverviewPage />} role="operator" />} />
+                    <Route path="/add-services" element={<ProtectedRoute element={<AddServices />} role="operator" />} />
+        
+                    {/* Protected routes for user */}
+                    <Route path='/user-home' element={<ProtectedRoute element={<UserHome />} role="user" />} />
+                    <Route path='/my-shipments' element={<ProtectedRoute element={<MyShipments />} role="user" />} />
+                    <Route path='/track-my-order' element={<ProtectedRoute element={<TrackMyOrder />} role="user" />} />
 
-                <Route path='*' element={<Navigate to='/' replace />} />
-            </Routes>
+                    {/* Fallback route */}
+                    <Route path='*' element={<Navigate to='/' replace />} />
+                </Routes>
 
-            <Toaster />
-        </div>
+                <Toaster />
+            </div>
+        </QueryClientProvider>
     );
 }
 
