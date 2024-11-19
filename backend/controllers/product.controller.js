@@ -41,7 +41,7 @@ export const getFeaturedProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
 	try {
-		const { name, description, price, image, category } = req.body;
+		const { companyName, contactNumber, contactName, businessEmail, website, province, country, description, price, image, category } = req.body;
 
 		let cloudinaryResponse = null;
 
@@ -50,7 +50,13 @@ export const createProduct = async (req, res) => {
 		}
 
 		const product = await Product.create({
-			name,
+			companyName,
+			contactNumber,
+			contactName,
+			businessEmail,
+			website,
+			province,
+			country,
 			description,
 			price,
 			image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
@@ -100,7 +106,13 @@ export const getRecommendedProducts = async (req, res) => {
 			{
 				$project: {
 					_id: 1,
-					name: 1,
+					companyName: 1,
+					contactNumber: 1,
+					contactName: 1,
+					businessEmail: 1,
+					website: 1,
+					province: 1, 
+					country: 1,
 					description: 1,
 					image: 1,
 					price: 1,

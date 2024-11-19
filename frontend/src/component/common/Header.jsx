@@ -74,7 +74,7 @@ const Header = ({ isOperator }) => {
                   </li>
                 )}
                 <li className="hover:bg-gray-100 cursor-pointer" onClick={handleLogout}>
-                  <span className="flex items-center px-4 py-2 text-sm text-gray-700">
+                  <span className="flex items-center px-4 py-2 text-m text-gray-700">
                     <FaSignOutAlt className="mr-2" /> Logout
                   </span>
                 </li>
