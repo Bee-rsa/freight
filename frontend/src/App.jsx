@@ -44,6 +44,7 @@ import OrdersPage from "./page/OrdersPage";
 import AddServices from "./page/AddServices";
 import AnalyticsPage from "./page/AnalyticsPage";
 import SettingsPage from "./page/SettingsPage";
+import ViewProfile from "./page/ViewProfile";
 
 // Create the QueryClient instance
 const queryClient = new QueryClient();
@@ -141,6 +142,7 @@ function App() {
                     <Route path='/operator-home' element={<ProtectedRoute element={<OperatorHome />} role="operator" />} />
                     <Route path="/overview" element={<ProtectedRoute element={<OverviewPage />} role="operator" />} />
                     <Route path="/add-services" element={<ProtectedRoute element={<AddServices />} role="operator" />} />
+                    <Route path="/view-profile" element={<ProtectedRoute element={<ViewProfile />} role="operator" />} />
         
                     {/* Protected routes for user */}
                     <Route path='/user-home' element={<ProtectedRoute element={<UserHome />} role="user" />} />

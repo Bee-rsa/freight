@@ -46,7 +46,7 @@ const Pricing = () => {
 
         {/* Additional Information */}
         <div className="w-full max-w-7xl mt-12 text-center">
-          <h3 className="text-4xl mb-6">Freight iT Offers More for the Price</h3>
+          <h3 className="text-4xl mb-6">Cargo Connect Offers More for the Price</h3>
 
           {/* Responsive Units */}
           <div className="flex flex-wrap justify-between w-full gap-8">
@@ -55,7 +55,7 @@ const Pricing = () => {
                 <h2 className="text-2xl font-bold text-custom-blue mb-2 font-poppins">{title}</h2>
                 <p className="text-gray-600 font-poppins">
                   {title === "Scalable Pricing" ? "With scalable pricing, you can invite as many admins as needed to manage your shipments efficiently." :
-                    title === "Management" ? "Seamless Integrations: Freight iT integrates with popular tracking APIs, payroll, and management systems." :
+                    title === "Management" ? "Seamless Integrations: Cargo Connect integrates with popular tracking APIs, payroll, and management systems." :
                     title === "Analytics Tools" ? "Gain access to robust tools and analytics without additional charges. We believe in straightforward pricing." :
                     "Get top-tier customer support and management tools to grow your logistics capabilities seamlessly."}
                 </p>

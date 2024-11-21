@@ -3,13 +3,15 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
-import productRoutes from "./routes/product.route.js";
-
+import courierRoutes from "./routes/courier.route.js";
+import profileRoutes from "./routes/profile.route.js";
+import vesselRoutes from "./routes/vessel.route.js";
+import truckingRoutes from "./routes/trucking.route.js";
 import { connectDB } from "./db/connectDB.js"; // Assuming this connects to your MongoDB
 import authRoutes from "./routes/auth.route.js"; // User auth routes
 import operatorAuthsRoutes from "./routes/auths.route.js"; // Operator auth routes
 
-dotenv.config();
+dotenv.config(); 
 console.log("MONGO_URI: ", process.env.MONGO_URI);
 
 const app = express();
@@ -24,7 +26,10 @@ app.use(cookieParser()); // allows us to parse incoming cookies
 // Set up user and operator authentication routes
 app.use("/api/auth", authRoutes);
 app.use("/api/auths", operatorAuthsRoutes); // Added route for operator authentication
-app.use("/api/auths/products", productRoutes);
+app.use("/api/auths/couriers", courierRoutes);
+app.use("/api/auths/profiles", profileRoutes);
+app.use("/api/auths/truckings", truckingRoutes);
+app.use("/api/auths/vessels", vesselRoutes);
 
 
 // Production settings for serving frontend files

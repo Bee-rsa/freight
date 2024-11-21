@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import { Trash, Star } from "lucide-react";
-import { useProductStore } from "../store/authsStore";
-
+import { useCourierStore } from "../store/authsStore";
 
 const ProductsList = () => {
-	const { deleteProduct, toggleFeaturedProduct, products } = useProductStore();
+	const { deleteCourier, toggleFeaturedCourier, couriers } = useCourierStore();
 
-	console.log("products", products);
+	console.log("couriers", couriers);
 
 	return (
 		<motion.div
@@ -15,7 +14,7 @@ const ProductsList = () => {
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.8 }}
 		>
-			<table className=' min-w-full divide-y mt-16 divide-gray-700'>
+			<table className='min-w-full divide-y mt-16 divide-gray-700'>
 				<thead className='bg-gray-700'>
 					<tr>
 						<th
@@ -53,33 +52,33 @@ const ProductsList = () => {
 				</thead>
 
 				<tbody className='bg-gray-800 divide-y divide-gray-700'>
-					{products?.map((product) => (
-						<tr key={product._id} className='hover:bg-gray-700'>
+					{couriers?.map((courier) => (
+						<tr key={courier._id} className='hover:bg-gray-700'>
 							<td className='px-6 py-4 whitespace-nowrap'>
 								<div className='flex items-center'>
 									<div className='flex-shrink-0 h-10 w-10'>
 										<img
 											className='h-10 w-10 rounded-full object-cover'
-											src={product.image}
-											alt={product.name}
+											src={courier.image}
+											alt={courier.name}
 										/>
 									</div>
 									<div className='ml-4'>
-										<div className='text-sm font-medium text-white'>{product.companyName}</div>
+										<div className='text-sm font-medium text-white'>{courier.companyName}</div>
 									</div>
 								</div>
 							</td>
 							<td className='px-6 py-4 whitespace-nowrap'>
-								<div className='text-sm text-gray-300'>${product.price.toFixed(2)}</div>
+								<div className='text-sm text-gray-300'>${courier.price.toFixed(2)}</div>
 							</td>
 							<td className='px-6 py-4 whitespace-nowrap'>
-								<div className='text-sm text-gray-300'>{product.category}</div>
+								<div className='text-sm text-gray-300'>{courier.category}</div>
 							</td>
 							<td className='px-6 py-4 whitespace-nowrap'>
 								<button
-									onClick={() => toggleFeaturedProduct(product._id)}
+									onClick={() => toggleFeaturedCourier(courier._id)}
 									className={`p-1 rounded-full ${
-										product.isFeatured ? "bg-yellow-400 text-gray-900" : "bg-gray-600 text-gray-300"
+										courier.isFeatured ? "bg-yellow-400 text-gray-900" : "bg-gray-600 text-gray-300"
 									} hover:bg-yellow-500 transition-colors duration-200`}
 								>
 									<Star className='h-5 w-5' />
@@ -87,7 +86,7 @@ const ProductsList = () => {
 							</td>
 							<td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
 								<button
-									onClick={() => deleteProduct(product._id)}
+									onClick={() => deleteCourier(courier._id)}
 									className='text-red-400 hover:text-red-300'
 								>
 									<Trash className='h-5 w-5' />
@@ -100,4 +99,5 @@ const ProductsList = () => {
 		</motion.div>
 	);
 };
+
 export default ProductsList;

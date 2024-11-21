@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import PropTypes from 'prop-types';
 import { FaUser, FaCog, FaBell, FaQuestionCircle, FaSignOutAlt } from 'react-icons/fa';
@@ -8,6 +8,8 @@ const Header = ({ isOperator }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const operatorLogout = useAuthsStore((state) => state.operatorLogout); // Access the operatorLogout function from the store
   const navigate = useNavigate(); // Initialize navigate for redirection
+  const dropdownRef = useRef(null);
+  const toggleButtonRef = useRef(null);
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -22,6 +24,25 @@ const Header = ({ isOperator }) => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Close dropdown only if the click is outside the dropdown and toggle button
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className="fixed top-0 left-0 w-full bg-custom-blue shadow-lg border-b border-gray-700 z-50">
       <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -33,6 +54,7 @@ const Header = ({ isOperator }) => {
             src='' // Provide the appropriate profile image source
             alt='Profile'
             className='rounded-full w-8 h-8 object-cover cursor-pointer'
+            ref={toggleButtonRef}
             onClick={toggleDropdown}
           />
           {/* Dropdown Menu */}
@@ -40,7 +62,7 @@ const Header = ({ isOperator }) => {
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-md font-poppins shadow-lg z-50">
               <ul className="py-1">
                 <li className="hover:bg-gray-100">
-                  <Link to="/profile" className="flex items-center px-4 py-2 text-m text-gray-700">
+                  <Link to="/view-profile" className="flex items-center px-4 py-2 text-m text-gray-700">
                     <FaUser className="mr-2" /> View Profile
                   </Link>
                 </li>

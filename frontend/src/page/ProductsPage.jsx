@@ -2,16 +2,16 @@ import { useEffect } from "react"; // Import useEffect
 import { Link } from "react-router-dom";
 import Header from "../component/common/Header";
 import Sidebar from "../component/common/Sidebar";
-import { useProductStore } from "../store/authsStore";
+import { useCourierStore } from "../store/authsStore";
 import ProductsList from "../component/ProductsList"; // Import ProductsList
 
 const ProductsPage = () => {
-  const { products, fetchAllProducts } = useProductStore(); // Get products from the store
+  const { couriers, fetchAllCouriers } = useCourierStore(); // Get products from the store
 
   // Fetch products when the component mounts
   useEffect(() => {
-    fetchAllProducts();
-  }, [fetchAllProducts]);
+    fetchAllCouriers();
+  }, [fetchAllCouriers]);
 
   return (
     <div className="flex flex-row h-full w-full">
@@ -36,7 +36,7 @@ const ProductsPage = () => {
           </span>
 
           {/* Render the ProductsList component */}
-          <ProductsList products={products} /> {/* Pass the fetched products to ProductsList */}
+          <ProductsList products={couriers} /> {/* Pass the fetched products to ProductsList */}
         </div>
       </div>
     </div>

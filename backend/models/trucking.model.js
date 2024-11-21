@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const productSchema = new mongoose.Schema(
+const truckingSchema = new mongoose.Schema(
   {
     companyName: {
       type: String,
@@ -55,6 +55,6 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Product = mongoose.model("Product", productSchema);
+const Trucking = mongoose.model("Trucking", truckingSchema);
 
-export default Product;
+export default Trucking;

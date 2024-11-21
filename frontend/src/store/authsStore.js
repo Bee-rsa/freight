@@ -122,86 +122,374 @@ export const useAuthsStore = create((set) => ({
     },
 }));
 
-export const useProductStore = create((set) => ({
-	products: [],
+export const useCourierStore = create((set) => ({
+	couriers: [],
 	loading: false,
 
-	setProducts: (products) => set({ products }),
+	setCouriers: (couriers) => set({ couriers }),
 
-	createProduct: async (productData) => {
+	createCourier: async (courierData) => {
 		set({ loading: true });
 		try {
-			const res = await axios.post(`${API_URL}/products`, productData);
+			const res = await axios.post(`${API_URL}/couriers`, courierData);
 			set((prevState) => ({
-				products: [...prevState.products, res.data],
+				couriers: [...prevState.couriers, res.data],
 				loading: false,
 			}));
 		} catch (error) {
-			toast.error(error.response?.data?.error || "Failed to create product");
+			toast.error(error.response?.data?.error || "Failed to create courier");
 			set({ loading: false });
 		}
 	},
 
-	fetchAllProducts: async () => {
+	fetchAllCouriers: async () => {
 		set({ loading: true });
 		try {
-			const response = await axios.get(`${API_URL}/products`);
-			set({ products: response.data.products, loading: false });
+			const response = await axios.get(`${API_URL}/couriers`);
+			console.log("Fetched Couriers:", response.data); // Log the fetched data to check its structure
+			set({ couriers: response.data.couriers, loading: false });
 		} catch (error) {
-			toast.error(error.response?.data?.error || "Failed to fetch products");
+			console.error("Error fetching couriers:", error); // Log the error
+			toast.error(error.response?.data?.error || "Failed to fetch couriers");
 			set({ loading: false });
 		}
 	},
 
-	fetchProductsByCategory: async (category) => {
+	fetchCouriersByCategory: async (category) => {
 		set({ loading: true });
 		try {
-			const response = await axios.get(`${API_URL}/products/category/${category}`);
-			set({ products: response.data.products, loading: false });
+			const response = await axios.get(`${API_URL}/couriers/category/${category}`);
+			set({ couriers: response.data.couriers, loading: false });
 		} catch (error) {
-			toast.error(error.response?.data?.error || "Failed to fetch products");
+			toast.error(error.response?.data?.error || "Failed to fetch couriers");
 			set({ loading: false });
 		}
 	},
 
-	deleteProduct: async (productId) => {
+	deleteCourier: async (courierId) => {
 		set({ loading: true });
 		try {
-			await axios.delete(`${API_URL}/products/${productId}`);
+			await axios.delete(`${API_URL}/couriers/${courierId}`);
 			set((prevState) => ({
-				products: prevState.products.filter((product) => product._id !== productId),
+				couriers: prevState.couriers.filter((courier) => courier._id !== courierId),
 				loading: false,
 			}));
 		} catch (error) {
-			toast.error(error.response?.data?.error || "Failed to delete product");
+			toast.error(error.response?.data?.error || "Failed to delete courier");
 			set({ loading: false });
 		}
 	},
 
-	toggleFeaturedProduct: async (productId) => {
+	toggleFeaturedCourier: async (courierId) => {
 		set({ loading: true });
 		try {
-			const response = await axios.patch(`${API_URL}/products/${productId}`);
+			const response = await axios.patch(`${API_URL}/couriers/${courierId}`);
 			set((prevState) => ({
-				products: prevState.products.map((product) =>
-					product._id === productId ? { ...product, isFeatured: response.data.isFeatured } : product
+				couriers: prevState.couriers.map((courier) =>
+					courier._id === courierId ? { ...courier, isFeatured: response.data.isFeatured } : courier
 				),
 				loading: false,
 			}));
 		} catch (error) {
-			toast.error(error.response?.data?.error || "Failed to update product");
+			toast.error(error.response?.data?.error || "Failed to update courier");
 			set({ loading: false });
 		}
 	},
 
-	fetchFeaturedProducts: async () => {
+	fetchFeaturedCouriers: async () => {
 		set({ loading: true });
 		try {
-			const response = await axios.get(`${API_URL}/products/featured`);
-			set({ products: response.data, loading: false });
+			const response = await axios.get(`${API_URL}/couriers/featured`);
+			set({ couriers: response.data, loading: false });
 		} catch (error) {
 			console.error("Error occurred:", error); // Logs the entire error object for debugging.
 			toast.error(error.response?.data?.error || "An error occurred");
+			set({ loading: false });
+		}
+	},
+}));
+
+export const useProfileStore = create((set) => ({
+	profiles: [],
+	loading: false,
+
+	// Set profiles directly
+	setProfiles: (profiles) => set({ profiles }),
+
+	createProfile: async (profileData) => {
+		set({ loading: true });
+		try {
+			const res = await axios.post(`${API_URL}/profiles`, profileData);
+			set((prevState) => ({
+				profiles: [...prevState.profiles, res.data],
+				loading: false,
+			}));
+		} catch (error) {
+			toast.error(error.response?.data?.error || "Failed to create profile");
+			set({ loading: false });
+		}
+	},
+
+	// Fetch all profiles
+	fetchAllProfiles: async () => {
+		set({ loading: true });
+		try {
+			const response = await axios.get(`${API_URL}/profiles`);
+			set({ profiles: response.data.profiles, loading: false });
+		} catch (error) {
+			toast.error(error.response?.data?.error || "Failed to fetch profiles");
+			set({ loading: false });
+		}
+	},
+
+	// Delete a profile
+	deleteProfile: async (profileId) => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/profiles/${profileId}`, { method: "DELETE" });
+
+			if (!response.ok) throw new Error("Failed to delete profile");
+
+			set((prevState) => ({
+				profiles: prevState.profiles.filter((profile) => profile._id !== profileId),
+				loading: false,
+			}));
+			toast.success("Profile deleted successfully!");
+		} catch (error) {
+			toast.error(error.message || "Failed to delete profile");
+			set({ loading: false });
+		}
+	},
+
+	// Toggle profile's featured status
+	toggleFeaturedProfile: async (profileId) => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/profiles/${profileId}`, { method: "PATCH" });
+			const data = await response.json();
+
+			if (!response.ok) throw new Error(data.error || "Failed to update profile");
+
+			set((prevState) => ({
+				profiles: prevState.profiles.map((profile) =>
+					profile._id === profileId ? { ...profile, isFeatured: data.isFeatured } : profile
+				),
+				loading: false,
+			}));
+			toast.success("Profile updated successfully!");
+		} catch (error) {
+			toast.error(error.message || "Failed to update profile");
+			set({ loading: false });
+		}
+	},
+
+	// Fetch featured profiles
+	fetchFeaturedProfiles: async () => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/profiles/featured`);
+			const data = await response.json();
+
+			if (!response.ok) throw new Error(data.error || "Failed to fetch featured profiles");
+
+			set({ profiles: data, loading: false });
+		} catch (error) {
+			toast.error(error.message || "Failed to fetch featured profiles");
+			set({ loading: false });
+		}
+	},
+
+    updateProfile: async (data) => {
+		try {
+			set({ loading: true });
+			const res = await axios.get("/profiles", data);
+			useAuthsStore.getState().setAuthUser(res.data.user);
+			toast.success("Profile updated successfully");
+		} catch (error) {
+			toast.error(error.response.data.message || "Something went wrong");
+		} finally {
+			set({ loading: false });
+		}
+	},
+}));
+
+export const useTruckingStore = create((set) => ({
+	truckings: [],
+	loading: false,
+
+	// Set profiles directly
+	setTruckings: (truckings) => set({ truckings }),
+
+	createTrucking: async (truckingData) => {
+		set({ loading: true });
+		try {
+			const res = await axios.post(`${API_URL}/truckings`, truckingData);
+			set((prevState) => ({
+				truckings: [...prevState.truckings, res.data],
+				loading: false,
+			}));
+		} catch (error) {
+			toast.error(error.response?.data?.error || "Failed to create trucking");
+			set({ loading: false });
+		}
+	},
+
+	// Fetch all profiles
+	fetchAllTruckings: async () => {
+		set({ loading: true });
+		try {
+			const response = await axios.get(`${API_URL}/truckings`);
+			set({ truckings: response.data.truckings, loading: false });
+		} catch (error) {
+			toast.error(error.response?.data?.error || "Failed to fetch truckings");
+			set({ loading: false });
+		}
+	},
+
+	// Delete a profile
+	deleteTrucking: async (truckingId) => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/truckings/${truckingId}`, { method: "DELETE" });
+
+			if (!response.ok) throw new Error("Failed to delete trucking");
+
+			set((prevState) => ({
+				truckings: prevState.truckings.filter((trucking) => trucking._id !== truckingId),
+				loading: false,
+			}));
+			toast.success("Trucking deleted successfully!");
+		} catch (error) {
+			toast.error(error.message || "Failed to delete trucking");
+			set({ loading: false });
+		}
+	},
+
+	// Toggle profile's featured status
+	toggleFeaturedTrucking: async (truckingId) => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/truckings/${truckingId}`, { method: "PATCH" });
+			const data = await response.json();
+
+			if (!response.ok) throw new Error(data.error || "Failed to update trucking");
+
+			set((prevState) => ({
+				truckings: prevState.truckings.map((trucking) =>
+					trucking._id === truckingId ? { ...trucking, isFeatured: data.isFeatured } : trucking
+				),
+				loading: false,
+			}));
+			toast.success("Trucking updated successfully!");
+		} catch (error) {
+			toast.error(error.message || "Failed to update trucking");
+			set({ loading: false });
+		}
+	},
+
+	// Fetch featured profiles
+	fetchFeaturedTruckings: async () => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/truckings/featured`);
+			const data = await response.json();
+
+			if (!response.ok) throw new Error(data.error || "Failed to fetch featured truckings");
+
+			set({ truckings: data, loading: false });
+		} catch (error) {
+			toast.error(error.message || "Failed to fetch featured truckings");
+			set({ loading: false });
+		}
+	},
+}));
+
+export const useVesselStore = create((set) => ({
+	vessels: [],
+	loading: false,
+
+	// Set profiles directly
+	setVessel: (vessels) => set({ vessels }),
+
+	createVessel: async (vesselData) => {
+		set({ loading: true });
+		try {
+			const res = await axios.post(`${API_URL}/vessels`, vesselData);
+			set((prevState) => ({
+				vessels: [...prevState.vessels, res.data],
+				loading: false,
+			}));
+		} catch (error) {
+			toast.error(error.response?.data?.error || "Failed to create vessel");
+			set({ loading: false });
+		}
+	},
+
+	// Fetch all profiles
+	fetchAllVessels: async () => {
+		set({ loading: true });
+		try {
+			const response = await axios.get(`${API_URL}/vessels`);
+			set({ vessels: response.data.vessels, loading: false });
+		} catch (error) {
+			toast.error(error.response?.data?.error || "Failed to fetch vessels");
+			set({ loading: false });
+		}
+	},
+
+	// Delete a profile
+	deleteVessel: async (vesselId) => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/vessels/${vesselId}`, { method: "DELETE" });
+
+			if (!response.ok) throw new Error("Failed to delete vessel");
+
+			set((prevState) => ({
+				vessels: prevState.vessels.filter((vessel) => vessel._id !== vesselId),
+				loading: false,
+			}));
+			toast.success("Vessel deleted successfully!");
+		} catch (error) {
+			toast.error(error.message || "Failed to delete Vessel");
+			set({ loading: false });
+		}
+	},
+
+	// Toggle profile's featured status
+	toggleFeaturedVessel: async (vesselId) => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/vessels/${vesselId}`, { method: "PATCH" });
+			const data = await response.json();
+
+			if (!response.ok) throw new Error(data.error || "Failed to update vessel");
+
+			set((prevState) => ({
+				vessels: prevState.vessels.map((vessel) =>
+					vessel._id === vesselId ? { ...vessel, isFeatured: data.isFeatured } : vessel
+				),
+				loading: false,
+			}));
+			toast.success("Vessel updated successfully!");
+		} catch (error) {
+			toast.error(error.message || "Failed to update vessel");
+			set({ loading: false });
+		}
+	},
+
+	// Fetch featured profiles
+	fetchFeaturedVessels: async () => {
+		set({ loading: true });
+		try {
+			const response = await fetch(`${API_URL}/vessels/featured`);
+			const data = await response.json();
+
+			if (!response.ok) throw new Error(data.error || "Failed to fetch featured vessels");
+
+			set({ vessels: data, loading: false });
+		} catch (error) {
+			toast.error(error.message || "Failed to fetch featured vessels");
 			set({ loading: false });
 		}
 	},

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Loader } from "lucide-react";
-import { useProductStore } from "../store/authsStore";
+import { useProfileStore } from "../store/authsStore";
 
-const categories = ["jeans", "t-shirts", "shoes", "glasses", "jackets", "suits", "bags"];
-const province = ["Ontario", "Quebec", "British Columbia"]; // Adjust to valid provinces
-const country = ["USA", "Canada", "Mexico"]; // Adjust to valid countries
+const categories = ["Truckload", "Air Freight", "Courier Services", "Ocean Freight", "Rail Freight"];
+const province = ["Gauteng", "Mpumalanga", "KwaZulu-Natal", "North West", "Limpopo", "Western Cape", "Free State", "Eastern Cape", "Northern Cape",]; // Adjust to valid provinces
+const country = ["South Africa", "Lesotho", "Namibia"]; // Adjust to valid countries
 
-const CreateProductForm = () => {
-  const [newProduct, setNewProduct] = useState({
+const CreateCompanyProfile = () => {
+  const [newProfile, setNewProfile] = useState({
     companyName: "",
     description: "",
     price: "",
@@ -23,21 +23,21 @@ const CreateProductForm = () => {
   });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const { createProduct, loading } = useProductStore();
+  const { createProfile, loading } = useProfileStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Simple client-side validation for required fields
-    if (!newProduct.companyName || !newProduct.price || !newProduct.category || !newProduct.image) {
+    if (!newProfile.companyName || !newProfile.price || !newProfile.category || !newProfile.image) {
       setErrorMessage("Please fill out all required fields.");
       return;
     }
 
     try {
-      await createProduct(newProduct);
+      await createProfile(newProfile);
       setSuccessMessage("Product created successfully!");
       setErrorMessage(""); // Clear any previous error messages
-      setNewProduct({
+      setNewProfile({
         companyName: "",
         description: "",
         price: "",
@@ -51,8 +51,8 @@ const CreateProductForm = () => {
         country: "",
       });
     } catch (error) {
-  console.log("Error creating product:", error);  // Log the error
-  setErrorMessage("Error creating product. Please try again.");
+  console.log("Error creating profile:", error);  // Log the error
+  setErrorMessage("Error creating profile. Please try again.");
 }
   };
 
@@ -61,7 +61,7 @@ const CreateProductForm = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setNewProduct({ ...newProduct, image: reader.result });
+        setNewProfile({ ...newProfile, image: reader.result });
       };
       reader.readAsDataURL(file); // base64
     }
@@ -74,7 +74,7 @@ const CreateProductForm = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-2xl font-semibold mb-6 text-300 text-center">Please Fill Out Company Details:</h2>
+      <h2 className="text-3xl font-semibold mb-6 text-300 text-center">Please Fill Out Company Details:</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Display error or success message */}
@@ -89,8 +89,8 @@ const CreateProductForm = () => {
             type="text"
             id="companyName"
             name="companyName"
-            value={newProduct.companyName}
-            onChange={(e) => setNewProduct({ ...newProduct, companyName: e.target.value })}
+            value={newProfile.companyName}
+            onChange={(e) => setNewProfile({ ...newProfile, companyName: e.target.value })}
             className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
             required
           />
@@ -106,8 +106,8 @@ const CreateProductForm = () => {
               type="text"
               id="contactName"
               name="contactName"
-              value={newProduct.contactName}
-              onChange={(e) => setNewProduct({ ...newProduct, contactName: e.target.value })}
+              value={newProfile.contactName}
+              onChange={(e) => setNewProfile({ ...newProfile, contactName: e.target.value })}
               className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
               required
             />
@@ -121,8 +121,8 @@ const CreateProductForm = () => {
               type="tel"
               id="contactNumber"
               name="contactNumber"
-              value={newProduct.contactNumber}
-              onChange={(e) => setNewProduct({ ...newProduct, contactNumber: e.target.value })}
+              value={newProfile.contactNumber}
+              onChange={(e) => setNewProfile({ ...newProfile, contactNumber: e.target.value })}
               className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
               required
             />
@@ -139,8 +139,8 @@ const CreateProductForm = () => {
               type="email"
               id="businessEmail"
               name="businessEmail"
-              value={newProduct.businessEmail}
-              onChange={(e) => setNewProduct({ ...newProduct, businessEmail: e.target.value })}
+              value={newProfile.businessEmail}
+              onChange={(e) => setNewProfile({ ...newProfile, businessEmail: e.target.value })}
               className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
               required
             />
@@ -154,8 +154,8 @@ const CreateProductForm = () => {
               type="url"
               id="website"
               name="website"
-              value={newProduct.website}
-              onChange={(e) => setNewProduct({ ...newProduct, website: e.target.value })}
+              value={newProfile.website}
+              onChange={(e) => setNewProfile({ ...newProfile, website: e.target.value })}
               className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
               required
             />
@@ -171,8 +171,8 @@ const CreateProductForm = () => {
               <select
                 id="province"
                 name="province"
-                value={newProduct.province}
-                onChange={(e) => setNewProduct({ ...newProduct, province: e.target.value })}
+                value={newProfile.province}
+                onChange={(e) => setNewProfile({ ...newProfile, province: e.target.value })}
                 className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
                 required
               >
@@ -192,8 +192,8 @@ const CreateProductForm = () => {
               <select
                 id="country"
                 name="country"
-                value={newProduct.country}
-                onChange={(e) => setNewProduct({ ...newProduct, country: e.target.value })}
+                value={newProfile.country}
+                onChange={(e) => setNewProfile({ ...newProfile, country: e.target.value })}
                 className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
                 required
               >
@@ -216,8 +216,8 @@ const CreateProductForm = () => {
           <textarea
             id="description"
             name="description"
-            value={newProduct.description}
-            onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+            value={newProfile.description}
+            onChange={(e) => setNewProfile({ ...newProfile, description: e.target.value })}
             className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
             rows="3"
           />
@@ -231,8 +231,8 @@ const CreateProductForm = () => {
             type="number"
             id="price"
             name="price"
-            value={newProduct.price}
-            onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+            value={newProfile.price}
+            onChange={(e) => setNewProfile({ ...newProfile, price: e.target.value })}
             className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
             required
           />
@@ -246,8 +246,8 @@ const CreateProductForm = () => {
           <select
             id="category"
             name="category"
-            value={newProduct.category}
-            onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+            value={newProfile.category}
+            onChange={(e) => setNewProfile({ ...newProfile, category: e.target.value })}
             className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
             required
           >
@@ -273,9 +273,9 @@ const CreateProductForm = () => {
             onChange={handleImageChange}
             className="mt-1 block w-full border-gray-300 text-black focus:ring-2 focus:ring-custom-blue"
           />
-          {newProduct.image && (
+          {newProfile.image && (
             <div className="mt-2">
-              <img src={newProduct.image} alt="Uploaded Preview" className="w-24 h-24 object-cover rounded-md" />
+              <img src={newProfile.image} alt="Uploaded Preview" className="w-24 h-24 object-cover rounded-md" />
             </div>
           )}
         </div>
@@ -289,7 +289,7 @@ const CreateProductForm = () => {
             {loading ? (
               <Loader className="animate-spin mx-auto text-white" />
             ) : (
-              "Create Product"
+              "Save Company Details"
             )}
           </button>
         </div>
@@ -298,4 +298,4 @@ const CreateProductForm = () => {
   );
 };
 
-export default CreateProductForm;
+export default CreateCompanyProfile;
