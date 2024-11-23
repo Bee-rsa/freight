@@ -2,8 +2,13 @@ import mongoose from "mongoose";
 
 const courierSchema = new mongoose.Schema(
   {
-    companyName: {
+    courierService: {
       type: String,
+      required: true,
+    },
+    baseRate: {
+      type: Number,
+      min: 0,
       required: true,
     },
     contactNumber: {
@@ -43,7 +48,7 @@ const courierSchema = new mongoose.Schema(
       type: String,
       required: [true, "Image is required"],
     },
-    category: {
+    eta: {
       type: String,
       required: true,
     },

@@ -4,7 +4,7 @@ import {
 	deleteCourier,
 	getAllCouriers,
 	getFeaturedCouriers,
-	getCouriersByCategory,
+	getCouriersByEta,
 	getRecommendedCouriers,
 	toggleFeaturedCourier,
 } from "../controllers/courier.controller.js";
@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.get("/", protectRoute, getAllCouriers); // Fetch all couriers
 router.get("/featured", getFeaturedCouriers); // Fetch featured couriers
-router.get("/category/:category", getCouriersByCategory); // Fetch couriers by category
+router.get("/category/:category", getCouriersByEta); // Fetch couriers by category
 router.get("/recommendations", getRecommendedCouriers); // Fetch recommended couriers
 router.post("/", protectRoute, createCourier); // Create a new courier
 router.patch("/:id", protectRoute, toggleFeaturedCourier); // Toggle featured status for courier

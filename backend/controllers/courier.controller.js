@@ -41,7 +41,7 @@ export const getFeaturedCouriers = async (req, res) => {
 
 export const createCourier = async (req, res) => {
 	try {
-		const { companyName, contactNumber, contactName, businessEmail, website, province, country, description, price, image, category } = req.body;
+		const { courierService, baseRate, contactNumber, contactName, businessEmail, website, province, country, description, price, image, eta } = req.body;
 
 		let cloudinaryResponse = null;
 
@@ -50,7 +50,8 @@ export const createCourier = async (req, res) => {
 		}
 
 		const courier = await Courier.create({
-			companyName,
+			courierService,
+			baseRate,
 			contactNumber,
 			contactName,
 			businessEmail,
@@ -60,7 +61,7 @@ export const createCourier = async (req, res) => {
 			description,
 			price,
 			image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
-			category,
+			eta,
 		});
 
 		res.status(201).json(courier);
@@ -106,7 +107,8 @@ export const getRecommendedCouriers = async (req, res) => {
 			{
 				$project: {
 					_id: 1,
-					companyName: 1,
+					courierService: 1,
+					baseRate: 1,
 					contactNumber: 1,
 					contactName: 1,
 					businessEmail: 1,
@@ -116,6 +118,7 @@ export const getRecommendedCouriers = async (req, res) => {
 					description: 1,
 					image: 1,
 					price: 1,
+					eta: 1, 
 				},
 			},
 		]);
@@ -127,13 +130,13 @@ export const getRecommendedCouriers = async (req, res) => {
 	}
 };
 
-export const getCouriersByCategory = async (req, res) => {
-	const { category } = req.params;
+export const getCouriersByEta = async (req, res) => {
+	const { eta } = req.params;
 	try {
-		const couriers = await Courier.find({ category });
+		const couriers = await Courier.find({ eta });
 		res.json({ couriers });
 	} catch (error) {
-		console.log("Error in getCouriersByCategory controller", error.message);
+		console.log("Error in getCouriersByEta controller", error.message);
 		res.status(500).json({ message: "Server error", error: error.message });
 	}
 };
@@ -143,7 +146,7 @@ export const toggleFeaturedCourier = async (req, res) => {
 		const courier = await Courier.findById(req.params.id);
 		if (courier) {
 			courier.isFeatured = !courier.isFeatured;
-			const updatedCourier = await courier.save();
+			const updatedCourier = await courier.save();  
 			await updateFeaturedCouriersCache();
 			res.json(updatedCourier);
 		} else {

@@ -155,10 +155,10 @@ export const useCourierStore = create((set) => ({
 		}
 	},
 
-	fetchCouriersByCategory: async (category) => {
+	fetchCouriersByEta: async (eta) => {
 		set({ loading: true });
 		try {
-			const response = await axios.get(`${API_URL}/couriers/category/${category}`);
+			const response = await axios.get(`${API_URL}/couriers/eta/${eta}`);
 			set({ couriers: response.data.couriers, loading: false });
 		} catch (error) {
 			toast.error(error.response?.data?.error || "Failed to fetch couriers");

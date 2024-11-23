@@ -3,16 +3,18 @@ import { motion } from "framer-motion";
 import { Loader } from "lucide-react";
 import { useCourierStore } from "../store/authsStore";
 
-const categories = ["Truckload", "Air Freight", "Courier Services", "Ocean Freight", "Rail Freight"];
+const eta = ["Truckload", "Air Freight", "Courier Services", "Ocean Freight", "Rail Freight"];
 const province = ["Gauteng", "Mpumalanga", "KwaZulu-Natal", "North West", "Limpopo", "Western Cape", "Free State", "Eastern Cape", "Northern Cape"];
 const country = ["South Africa", "Lesotho", "Namibia"];
+const courierService = ["Motorcycle Courier", "Standard Courier", "Same-Day Delivery", "Document Courier", "Overnight Delivery", "Special Handling"];
 
 const CreateCourierForm = () => {
   const [newCourier, setNewCourier] = useState({
-    companyName: "",
+    courierService: "",
+    baseRate: "",
     description: "",
     price: "",
-    category: "",
+    eta: "",
     image: "",
     contactName: "",
     contactNumber: "",
@@ -28,7 +30,7 @@ const CreateCourierForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Simple client-side validation for required fields
-    if (!newCourier.companyName || !newCourier.price || !newCourier.category || !newCourier.image) {
+    if (!newCourier.courierService || !newCourier.baseRate || !newCourier.price || !newCourier.eta || !newCourier.image) {
       setErrorMessage("Please fill out all required fields.");
       return;
     }
@@ -38,10 +40,11 @@ const CreateCourierForm = () => {
       setSuccessMessage("Courier created successfully!");
       setErrorMessage(""); // Clear any previous error messages
       setNewCourier({
-        companyName: "",
+        courierService: "",
+        baseRate: "",
         description: "",
         price: "",
-        category: "",
+        eta: "",
         image: "",
         contactName: "",
         contactNumber: "",
@@ -74,27 +77,76 @@ const CreateCourierForm = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-2xl font-semibold mb-6 text-300 text-center">Please Fill Out Courier Details:</h2>
+      <h2 className="text-2xl font-semibold mb-6 text-300 text-center">Please Fill Out Courier Services Details:</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Display error or success message */}
         {errorMessage && <div className="text-red-600 text-sm">{errorMessage}</div>}
         {successMessage && <div className="text-custom-blue text-sm">{successMessage}</div>}
 
-        <div>
-          <label htmlFor="companyName" className="block text-sm font-medium font-poppins text-300">
-            Company Name
-          </label>
-          <input
-            type="text"
-            id="companyName"
-            name="companyName"
-            value={newCourier.companyName}
-            onChange={(e) => setNewCourier({ ...newCourier, companyName: e.target.value })}
-            className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-            required
-          />
-        </div>
+        {/* Courier Service Dropdown */}
+<div className="flex flex-col w-full space-y-2">
+  <label htmlFor="courierService" className="text-sm font-medium text-gray-800 font-poppins">
+    Courier Service Types
+  </label>
+  <select
+    id="courierService"
+    name="courierService"
+    value={newCourier.courierService}
+    onChange={(e) => setNewCourier({ ...newCourier, courierService: e.target.value })}
+    className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
+    required
+  >
+    <option value="">Select a Courier Type</option>
+    {courierService.map((cat) => (
+      <option key={cat} value={cat}>
+        {cat}
+      </option>
+    ))}
+  </select>
+</div>
+
+
+          <div className="flex space-x-4">
+            {/* Base Rate Input */}
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="baseRate" className="text-sm font-medium font-poppins">
+                Base Rate
+              </label>
+              <input
+                type="number"
+                id="baseRate"
+                name="baseRate"
+                value={newCourier.baseRate}
+                onChange={(e) => setNewCourier({ ...newCourier, baseRate: e.target.value })}
+                className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
+                required
+              />
+            </div>
+
+            {/* Estimated Time of Arrival Dropdown */}
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="eta" className="block text-sm font-medium font-poppins">
+                Estimated Time of Arrival
+              </label>
+              <select
+                id="eta"
+                name="eta"
+                value={newCourier.eta}
+                onChange={(e) => setNewCourier({ ...newCourier, eta: e.target.value })}
+                className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
+                required
+              >
+                <option value="">Select a category</option>
+                {eta.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
 
         {/* Contact Name and Contact Number grouped side by side in larger screens, stack in mobile */}
         <div className="flex flex-col sm:flex-row sm:space-x-4">
@@ -234,27 +286,6 @@ const CreateCourierForm = () => {
             className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
             required
           />
-        </div>
-
-        <div>
-          <label htmlFor="category" className="block text-sm font-medium font-poppins text-300">
-            Category
-          </label>
-          <select
-            id="category"
-            name="category"
-            value={newCourier.category}
-            onChange={(e) => setNewCourier({ ...newCourier, category: e.target.value })}
-            className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-            required
-          >
-            <option value="">Select a category</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div>
