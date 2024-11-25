@@ -74,9 +74,9 @@ const Calendar = () => {
   };
 
   return (
-    <div className="flex flex-row h-screen w-full">
+    <div className='flex h-screen w-full overflow-hidden bg-white'>
       <Sidebar />
-      <div className="flex-1 overflow-auto bg-white font-poppins relative z-40 w-full">
+      <div className='flex-1 overflow-auto bg-white font-poppins relative z-40 w-full'>
         <Header title="Overview" />
         <div style={styles.content}>
           {/* Border Blocker */}

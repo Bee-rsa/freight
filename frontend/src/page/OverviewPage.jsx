@@ -17,7 +17,7 @@ const OverviewPage = () => {
   }, [checkAuths]);
 
   return (
-    <div className='flex flex-row h-screen w-full'>
+    <div className='flex h-screen w-full overflow-hidden bg-white'>
       {/* Sidebar */}
       <Sidebar /> {/* Render the Sidebar on the left */}
 

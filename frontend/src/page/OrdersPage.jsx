@@ -17,7 +17,7 @@ const orderStats = {
 
 const OrdersPage = () => {
 	return (
-		<div className='flex flex-row h-screen w-full'>
+		<div className='flex h-screen w-full overflow-hidden bg-white'>
 			<Sidebar /> {/* Sidebar component */}
 			<div className='flex-1 overflow-auto relative z-10 w-full'>
 				<Header title={"Orders"} />

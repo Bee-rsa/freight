@@ -11,7 +11,7 @@ import AIPoweredInsights from "../component/analytics/AIPoweredInsights";
 
 const AnalyticsPage = () => {
 	return (
-		<div className='flex h-screen w-full'>
+		<div className='flex h-screen w-full overflow-hidden bg-white'>
 			{/* Sidebar */}
 			<Sidebar />  {/* Sidebar component placed here */}
 
