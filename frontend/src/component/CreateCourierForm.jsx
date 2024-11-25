@@ -4,24 +4,20 @@ import { Loader } from "lucide-react";
 import { useCourierStore } from "../store/authsStore";
 
 const eta = ["Truckload", "Air Freight", "Courier Services", "Ocean Freight", "Rail Freight"];
-const province = ["Gauteng", "Mpumalanga", "KwaZulu-Natal", "North West", "Limpopo", "Western Cape", "Free State", "Eastern Cape", "Northern Cape"];
-const country = ["South Africa", "Lesotho", "Namibia"];
+
 const courierService = ["Motorcycle Courier", "Standard Courier", "Same-Day Delivery", "Document Courier", "Overnight Delivery", "Special Handling"];
 
 const CreateCourierForm = () => {
   const [newCourier, setNewCourier] = useState({
     courierService: "",
-    baseRate: "",
     description: "",
-    price: "",
     eta: "",
     image: "",
-    contactName: "",
-    contactNumber: "",
-    businessEmail: "",
-    website: "",
-    province: "",
-    country: "",
+		localMaxKilometers: "", localRateKilometers: "", regionalMaxKilometers: "", regionalRateKilometers: "", nationalMaxKilometers: "", nationalRateKilometers: "", 
+   localRateKilograms: "", localKilogramOverweightCharge: "", regionalRateKilograms: "", regionalKilogramOverweightCharge: "", nationalRateKilograms: "", nationalKilogramOverweightCharge: "",
+    localBaseRate: "", localFuelSurcharge: "", regionalBaseRate: "", regionalFuelSurcharge: "", nationalBaseRate: "", nationalFuelSurcharge: "",
+    localDimensionRate: "", localDimensionOverweightCharge: "", regionalDimensionRate: "", regionalDimensionOverweightCharge: "", nationalDimensionRate: "", nationalDimensionOverweightCharge: "",
+    residentialDeliveryFee: "", signatureRequired: "", packageRedeliveryFee: "", dangerousGoodsHandlingFee: "", specialHandlingFee: "", saturdayDeliveryFee: "", holidayDeliveryFee: "", weekendPickupFee: "", nonStandardPickupFee: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -30,7 +26,7 @@ const CreateCourierForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Simple client-side validation for required fields
-    if (!newCourier.courierService || !newCourier.baseRate || !newCourier.price || !newCourier.eta || !newCourier.image) {
+    if (!newCourier.courierService || !newCourier.description || !newCourier.eta || !newCourier.image) {
       setErrorMessage("Please fill out all required fields.");
       return;
     }
@@ -41,17 +37,14 @@ const CreateCourierForm = () => {
       setErrorMessage(""); // Clear any previous error messages
       setNewCourier({
         courierService: "",
-        baseRate: "",
         description: "",
-        price: "",
         eta: "",
         image: "",
-        contactName: "",
-        contactNumber: "",
-        businessEmail: "",
-        website: "",
-        province: "",
-        country: "",
+        localMaxKilometers: "", localRateKilometers: "", regionalMaxKilometers: "", regionalRateKilometers: "", nationalMaxKilometers: "", nationalRateKilometers: "", 
+        localRateKilograms: "", localKilogramOverweightCharge: "", regionalRateKilograms: "", regionalKilogramOverweightCharge: "", nationalRateKilograms: "", nationalKilogramOverweightCharge: "",
+        localBaseRate: "", localFuelSurcharge: "", regionalBaseRate: "", regionalFuelSurcharge: "", nationalBaseRate: "", nationalFuelSurcharge: "",
+        localDimensionRate: "", localDimensionOverweightCharge: "", regionalDimensionRate: "", regionalDimensionOverweightCharge: "", nationalDimensionRate: "", nationalDimensionOverweightCharge: "",
+        residentialDeliveryFee: "", signatureRequired: "", packageRedeliveryFee: "", dangerousGoodsHandlingFee: "", specialHandlingFee: "", saturdayDeliveryFee: "", holidayDeliveryFee: "", weekendPickupFee: "", nonStandardPickupFee: "",
       });
     } catch (error) {
       console.log("Error creating courier:", error);  // Log the error
@@ -77,7 +70,7 @@ const CreateCourierForm = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-2xl font-semibold mb-6 text-300 text-center">Please Fill Out Courier Services Details:</h2>
+      <h2 className="text-3xl font-poppins font-semibold mb-6 text-custom-blue text-center">Please Fill Out Courier Services Details:</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Display error or success message */}
@@ -86,7 +79,7 @@ const CreateCourierForm = () => {
 
         {/* Courier Service Dropdown */}
 <div className="flex flex-col w-full space-y-2">
-  <label htmlFor="courierService" className="text-sm font-medium text-gray-800 font-poppins">
+  <label htmlFor="courierService" className="text-sm font-medium text-gray-900 font-poppins">
     Courier Service Types
   </label>
   <select
@@ -106,27 +99,24 @@ const CreateCourierForm = () => {
   </select>
 </div>
 
+{/* Description */}
+<div>
+          <label htmlFor="description" className="block text-sm text-gray-900 font-medium font-poppins text-300">
+            Description Of Business
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={newCourier.description}
+            onChange={(e) => setNewCourier({ ...newCourier, description: e.target.value })}
+            className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
+          />
+        </div>
 
           <div className="flex space-x-4">
-            {/* Base Rate Input */}
-            <div className="flex flex-col w-1/2">
-              <label htmlFor="baseRate" className="text-sm font-medium font-poppins">
-                Base Rate
-              </label>
-              <input
-                type="number"
-                id="baseRate"
-                name="baseRate"
-                value={newCourier.baseRate}
-                onChange={(e) => setNewCourier({ ...newCourier, baseRate: e.target.value })}
-                className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-                required
-              />
-            </div>
-
             {/* Estimated Time of Arrival Dropdown */}
             <div className="flex flex-col w-1/2">
-              <label htmlFor="eta" className="block text-sm font-medium font-poppins">
+              <label htmlFor="eta" className="block text-sm text-gray-900 font-medium font-poppins">
                 Estimated Time of Arrival
               </label>
               <select
@@ -147,146 +137,487 @@ const CreateCourierForm = () => {
             </div>
           </div>
 
+         {/* Distance Charge */}
+<h2 className="text-2xl font-poppins font-semibold mb-6 text-custom-blue text-left">
+  Distance Charge:
+</h2>
 
-        {/* Contact Name and Contact Number grouped side by side in larger screens, stack in mobile */}
-        <div className="flex flex-col sm:flex-row sm:space-x-4">
-          <div className="flex-1">
-            <label htmlFor="contactName" className="block text-sm font-medium font-poppins text-300">
-              Contact Name
-            </label>
-            <input
-              type="text"
-              id="contactName"
-              name="contactName"
-              value={newCourier.contactName}
-              onChange={(e) => setNewCourier({ ...newCourier, contactName: e.target.value })}
-              className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-              required
-            />
-          </div>
-
-          <div className="flex-1">
-            <label htmlFor="contactNumber" className="block text-sm font-medium font-poppins text-300">
-              Contact Number
-            </label>
-            <input
-              type="tel"
-              id="contactNumber"
-              name="contactNumber"
-              value={newCourier.contactNumber}
-              onChange={(e) => setNewCourier({ ...newCourier, contactNumber: e.target.value })}
-              className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-              required
-            />
-          </div>
-        </div>
-
-        {/* Group Business Email and Website side by side in larger screens, stack in mobile */}
-        <div className="flex flex-col sm:flex-row sm:space-x-4">
-          <div className="flex-1">
-            <label htmlFor="businessEmail" className="block text-sm font-medium font-poppins text-300">
-              Business Email
-            </label>
-            <input
-              type="email"
-              id="businessEmail"
-              name="businessEmail"
-              value={newCourier.businessEmail}
-              onChange={(e) => setNewCourier({ ...newCourier, businessEmail: e.target.value })}
-              className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-              required
-            />
-          </div>
-
-          <div className="flex-1">
-            <label htmlFor="website" className="block text-sm font-medium font-poppins text-300">
-              Website
-            </label>
-            <input
-              type="url"
-              id="website"
-              name="website"
-              value={newCourier.website}
-              onChange={(e) => setNewCourier({ ...newCourier, website: e.target.value })}
-              className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-              required
-            />
-          </div>
-        </div>
-
-        {/* Group Province and Country side by side in larger screens, stack in mobile */}
-        <div className="flex flex-col sm:flex-row sm:space-x-4">
-          <div className="flex-1">
-            <label htmlFor="province" className="block text-sm font-medium font-poppins text-300">
-              Province
-            </label>
-            <select
-              id="province"
-              name="province"
-              value={newCourier.province}
-              onChange={(e) => setNewCourier({ ...newCourier, province: e.target.value })}
-              className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-              required
-            >
-              <option value="">Select a province</option>
-              {province.map((prov) => (
-                <option key={prov} value={prov}>
-                  {prov}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex-1">
-            <label htmlFor="country" className="block text-sm font-medium font-poppins text-300">
-              Country
-            </label>
-            <select
-              id="country"
-              name="country"
-              value={newCourier.country}
-              onChange={(e) => setNewCourier({ ...newCourier, country: e.target.value })}
-              className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-              required
-            >
-              <option value="">Select a country</option>
-              {country.map((cnt) => (
-                <option key={cnt} value={cnt}>
-                  {cnt}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Description and Price */}
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium font-poppins text-300">
-            Description Of Business
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            value={newCourier.description}
-            onChange={(e) => setNewCourier({ ...newCourier, description: e.target.value })}
-            className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="price" className="block text-sm font-medium font-poppins text-300">
-            Price
-          </label>
+<div className="overflow-x-auto shadow-lg font-poppins">
+<table className="min-w-full table-auto border-collapse border border-gray-300">
+    <thead>
+      <tr>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Zone Codes</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Domestic Market</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Maximum Zone Kilometers</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Rate per Kilometer</th>
+      </tr>
+    </thead>
+    <tbody className="text-sm">
+      {/* Distance Zone 1 */}
+      <tr className="hover:bg-gray-50">
+        <td className="px-6 py-4 border-t border-gray-200">Zone Code 1</td>
+        <td className="px-6 py-4 border-t border-gray-200">Local</td>
+        <td className="px-6 py-4 border-t border-gray-200">
           <input
-            type="text"
-            id="price"
-            name="price"
-            value={newCourier.price}
-            onChange={(e) => setNewCourier({ ...newCourier, price: e.target.value })}
-            className="mt-1 block w-full bg-white border border-gray-400 rounded-md shadow-sm py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-custom-blue"
-            required
+            type="number"
+            value={newCourier.localMaxKilometers}
+            onChange={(e) => setNewCourier({ ...newCourier, localMaxKilometers: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue"
+            placeholder="Enter Max Kilometers"
           />
-        </div>
+        </td>
+        <td className="px-6 py-4 border-t border-gray-200">
+          <input
+            type="number"
+            value={newCourier.localRateKilometers}
+            onChange={(e) => setNewCourier({ ...newCourier, localRateKilometers: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue"
+            placeholder="Rate per Kilometer"
+          />
+        </td>
+      </tr>
+      {/* Distance Zone 2 */}
+      <tr className="hover:bg-gray-50">
+        <td className="px-6 py-4 border-t border-gray-200">Zone Code 2</td>
+        <td className="px-6 py-4 border-t border-gray-200">Regional</td>
+        <td className="px-6 py-4 border-t border-gray-200">
+          <input
+            type="number"
+            value={newCourier.regionalMaxKilometers}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalMaxKilometers: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue"
+            placeholder="Enter Max Kilometers"
+          />
+        </td>
+        <td className="px-6 py-4 border-t border-gray-200">
+          <input
+            type="number"
+            value={newCourier.regionalRateKilometers}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalRateKilometers: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue"
+            placeholder="Rate per Kilometer"
+          />
+        </td>
+      </tr>
+      {/* Distance Zone 3 */}
+      <tr className="hover:bg-gray-50">
+        <td className="px-6 py-4 border-t border-gray-200">Zone Code 3</td>
+        <td className="px-6 py-4 border-t border-gray-200">National</td>
+        <td className="px-6 py-4 border-t border-gray-200">
+          <input
+            type="number"
+            value={newCourier.nationalMaxKilometers}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalMaxKilometers: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue"
+            placeholder="Enter Max Kilometers"
+          />
+        </td>
+        <td className="px-6 py-4 border-t border-gray-200">
+          <input
+            type="number"
+            value={newCourier.nationalRateKilometers}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalRateKilometers: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue"
+            placeholder="Rate per Kilometer"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+{/* Base Rate and Fuel Surcharge */}
+<h2 className="text-2xl font-poppins mt-16 font-semibold mb-6 text-custom-blue text-left">Base Rate and Fuel Surcharge:</h2>
+
+<div className="overflow-x-auto">
+  <table className="min-w-full table-auto font-poppins border-collapse border border-gray-300">
+    <thead>
+      <tr>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Zone Codes</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Domestic Market</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Base Rate</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Fuel Surcharge (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* Base Rate and Fuel Surcharge Zone 1 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 1</td>
+        <td className="px-6 py-4 text-gray-600">Local</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.localBaseRate}
+            onChange={(e) => setNewCourier({ ...newCourier, localBaseRate: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Enter Base Rate"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.localFuelSurcharge}
+            onChange={(e) => setNewCourier({ ...newCourier, localFuelSurcharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Fuel Surcharge (%)"
+          />
+        </td>
+      </tr>
+      {/* Base Rate and Fuel Surcharge Zone 2 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 2</td>
+        <td className="px-6 py-4 text-gray-600">Regional</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.regionalBaseRate}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalBaseRate: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Enter Base Rate"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.regionalFuelSurcharge}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalFuelSurcharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Fuel Surcharge (%)"
+          />
+        </td>
+      </tr>
+      {/* Base Rate and Fuel Surcharge Zone 3 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 3</td>
+        <td className="px-6 py-4 text-gray-600">National</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.nationalBaseRate}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalBaseRate: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Enter Base Rate"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.nationalFuelSurcharge}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalFuelSurcharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Fuel Surcharge (%)"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+{/* Weight Charge */}
+<h2 className="text-2xl font-poppins mt-16 font-semibold mb-6 text-custom-blue text-left">Weight Charge:</h2>
+
+<div className="overflow-x-auto shadow-lg font-poppins">
+  <table className="min-w-full table-auto border-collapse border border-gray-300">
+    <thead>
+      <tr>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Zone Codes</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Domestic Market</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Rates</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-white bg-custom-blue">Overweight Charge</th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* Weight Charge Zone 1 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 1</td>
+        <td className="px-6 py-4 text-gray-600">Local</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.localRateKilograms}
+            onChange={(e) => setNewCourier({ ...newCourier, localRateKilograms: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Rate per Kilogram"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.localKilogramOverweightCharge}
+            onChange={(e) => setNewCourier({ ...newCourier, localKilogramOverweightCharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Cost per kilogram Over"
+          />
+        </td>
+      </tr>
+      {/* Weight Charge Zone 2 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 2</td>
+        <td className="px-6 py-4 text-gray-600">Regional</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.regionalRateKilograms}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalRateKilograms: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Rate per Kilogram"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.regionalKilogramOverweightCharge}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalKilogramOverweightCharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Cost per kilogram Over"
+          />
+        </td>
+      </tr>
+      {/* Weight Charge Zone 3 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 3</td>
+        <td className="px-6 py-4 text-gray-600">National</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.nationalRateKilograms}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalRateKilograms: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Rate per Kilogram"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.nationalKilogramOverweightCharge}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalKilogramOverweightCharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Cost per kilogram Over"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{/* Dimension Charge */}
+<h2 className="text-2xl font-poppins font-semibold mb-6 text-custom-blue text-left">Dimension Charge:</h2>
+
+<div className="overflow-x-auto shadow-lg font-poppins">
+  <table className="min-w-full table-auto border-collapse border border-gray-300">
+    <thead>
+      <tr>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Zone Codes</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Domestic Market</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Rates</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold text-custom-sage bg-custom-blue">Overweight Charge</th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* Dimension Charge Zone 1 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 1</td>
+        <td className="px-6 py-4 text-gray-600">Local</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.localDimensionRate}
+            onChange={(e) => setNewCourier({ ...newCourier, localDimensionRate: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Rate per Kilogram"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.localDimensionOverweightCharge}
+            onChange={(e) => setNewCourier({ ...newCourier, localDimensionOverweightCharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Cost per kilogram Over"
+          />
+        </td>
+      </tr>
+      {/* Dimension Charge Zone 2 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 2</td>
+        <td className="px-6 py-4 text-gray-600">Regional</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.regionalDimensionRate}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalDimensionRate: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Rate per Kilogram"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.regionalDimensionOverweightCharge}
+            onChange={(e) => setNewCourier({ ...newCourier, regionalDimensionOverweightCharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Cost per kilogram Over"
+          />
+        </td>
+      </tr>
+      {/* Dimension Charge Zone 3 */}
+      <tr className="border-t border-gray-300">
+        <td className="px-6 py-4 text-gray-600">Zone Code 3</td>
+        <td className="px-6 py-4 text-gray-600">National</td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.nationalDimensionRate}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalDimensionRate: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Rate per Kilogram"
+          />
+        </td>
+        <td className="px-6 py-4">
+          <input
+            type="number"
+            value={newCourier.nationalDimensionOverweightCharge}
+            onChange={(e) => setNewCourier({ ...newCourier, nationalDimensionOverweightCharge: e.target.value })}
+            className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+            placeholder="Cost per kilogram Over"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{/* Accessorial Charges */}
+<h2 className="text-2xl font-poppins mt-16 font-semibold mb-6 text-custom-blue text-left">Accessorial Charges:</h2>
+
+{/* Table for Accessorial Charges */}
+<table className="min-w-full table-auto border-collapse border border-gray-300">
+  <thead>
+    <tr>
+      <th className="px-6 py-1 text-left text-sm font-semibold text-white bg-custom-blue">Charge Type</th>
+      <th className="px-6 py-1 text-left text-sm font-semibold text-white bg-custom-blue">Charge Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {/* Charge Types and Input Fields */}
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Residential Delivery Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.residentialDeliveryFee}
+          onChange={(e) => setNewCourier({ ...newCourier, residentialDeliveryFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Signature Required</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.signatureRequired}
+          onChange={(e) => setNewCourier({ ...newCourier, signatureRequired: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Package Re-Delivery Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.packageRedeliveryFee}
+          onChange={(e) => setNewCourier({ ...newCourier, packageRedeliveryFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Dangerous Goods Handling Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.dangerousGoodsHandlingFee}
+          onChange={(e) => setNewCourier({ ...newCourier, dangerousGoodsHandlingFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Special Handling Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.specialHandlingFee}
+          onChange={(e) => setNewCourier({ ...newCourier, specialHandlingFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Saturday Delivery Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.saturdayDeliveryFee}
+          onChange={(e) => setNewCourier({ ...newCourier, saturdayDeliveryFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Holiday Delivery Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.holidayDeliveryFee}
+          onChange={(e) => setNewCourier({ ...newCourier, holidayDeliveryFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Weekend Pickup Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.weekendPickupFee}
+          onChange={(e) => setNewCourier({ ...newCourier, weekendPickupFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+    <tr className="border-t border-gray-300">
+      <td className="px-6 py-4 text-gray-600">Non-Standard Pickup Fee</td>
+      <td className="px-6 py-4">
+        <input
+          type="number"
+          value={newCourier.nonStandardPickupFee}
+          onChange={(e) => setNewCourier({ ...newCourier, nonStandardPickupFee: e.target.value })}
+          className="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-custom-blue text-sm"
+          placeholder="Input Amount"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
 
         <div>
           <label htmlFor="image" className="block text-sm font-medium font-poppins text-300">
@@ -306,7 +637,7 @@ const CreateCourierForm = () => {
           className="w-full bg-custom-blue text-white py-2 px-4 rounded-md text-sm font-semibold"
           disabled={loading}
         >
-          {loading ? <Loader className="animate-spin" /> : "Create Courier"}
+          {loading ? <Loader className="animate-spin" /> : "Create Courier Service"}
         </button>
       </form>
     </motion.div>

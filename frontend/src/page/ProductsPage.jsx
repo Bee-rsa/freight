@@ -14,13 +14,13 @@ const ProductsPage = () => {
   }, [fetchAllCouriers]);
 
   return (
-    <div className="flex flex-row h-full w-full">
+    <div className='flex flex-row h-screen w-full'>
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar /> {/* Render the Sidebar on the left */}
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto relative z-10 w-full">
-        <Header title="My Services" />
+      {/* Main content */}
+      <div className='flex-1 overflow-auto relative z-40 w-full'>
+        <Header title='My Services' />
 
         <div className="max-w-7xl h-full mx-auto px-4 space-y-5 bg-white">
           <span className="flex flex-col md:flex-row justify-between items-center mb-6">

@@ -43,7 +43,7 @@ import SalesPage from "./page/SalesPage";
 import OrdersPage from "./page/OrdersPage";
 import AddServices from "./page/AddServices";
 import AnalyticsPage from "./page/AnalyticsPage";
-import SettingsPage from "./page/SettingsPage";
+import CalendarPage from "./page/CalendarPage";
 import ViewProfile from "./page/ViewProfile";
 
 // Create the QueryClient instance
@@ -136,7 +136,7 @@ function App() {
                     <Route path='/track-my-order' element={<TrackMyOrder />} />
                     <Route path='/orders' element={<OrdersPage />} />
                     <Route path='/analytics' element={<AnalyticsPage />} />
-                    <Route path='/settings' element={<SettingsPage />} />
+                    <Route path='/calendar' element={<CalendarPage />} />
 
                     {/* Protected routes for operator */}
                     <Route path='/operator-home' element={<ProtectedRoute element={<OperatorHome />} role="operator" />} />

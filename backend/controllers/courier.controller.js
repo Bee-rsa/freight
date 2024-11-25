@@ -2,16 +2,24 @@ import { redis } from "../lib/redis.js";
 import cloudinary from "../lib/cloudinary.js";
 import Courier from "../models/courier.model.js";
 
+// Fetch all couriers
 export const getAllCouriers = async (req, res) => {
 	try {
-		const couriers = await Courier.find({}); // find all products
-		res.json({ couriers });
+		const couriers = await Courier.find({}).lean();  // Use .lean() for better performance
+		// Add formattedInfo to each courier
+		const formattedCouriers = couriers.map(courier => ({
+			...courier,
+			formattedInfo: courier.formattedInfo,  // Include the virtual field
+		}));
+
+		res.json({ couriers: formattedCouriers });
 	} catch (error) {
 		console.log("Error in getAllCouriers controller", error.message);
 		res.status(500).json({ message: "Server error", error: error.message });
 	}
 };
 
+// Fetch featured couriers
 export const getFeaturedCouriers = async (req, res) => {
 	try {
 		let featuredCouriers = await redis.get("featured_couriers");
@@ -19,29 +27,33 @@ export const getFeaturedCouriers = async (req, res) => {
 			return res.json(JSON.parse(featuredCouriers));
 		}
 
-		// if not in redis, fetch from mongodb
-		// .lean() is gonna return a plain javascript object instead of a mongodb document
-		// which is good for performance
+		// If not in redis, fetch from MongoDB
 		featuredCouriers = await Courier.find({ isFeatured: true }).lean();
 
 		if (!featuredCouriers) {
 			return res.status(404).json({ message: "No featured couriers found" });
 		}
 
-		// store in redis for future quick access
+		// Add formattedInfo to each featured courier
+		const formattedFeaturedCouriers = featuredCouriers.map(courier => ({
+			...courier,
+			formattedInfo: courier.formattedInfo,  // Include the virtual field
+		}));
 
-		await redis.set("featured_couriers", JSON.stringify(featuredCouriers));
+		// Store in Redis for future quick access
+		await redis.set("featured_couriers", JSON.stringify(formattedFeaturedCouriers));
 
-		res.json(featuredCouriers);
+		res.json(formattedFeaturedCouriers);
 	} catch (error) {
 		console.log("Error in getFeaturedCouriers controller", error.message);
 		res.status(500).json({ message: "Server error", error: error.message });
 	}
 };
 
+// Create a new courier
 export const createCourier = async (req, res) => {
 	try {
-		const { courierService, baseRate, contactNumber, contactName, businessEmail, website, province, country, description, price, image, eta } = req.body;
+		const { courierService, description, image, localMaxKilometers, localRateKilometers, regionalMaxKilometers, regionalRateKilometers, nationalMaxKilometers, nationalRateKilometers, localRateKilograms, localKilogramOverweightCharge, regionalRateKilograms, regionalKilogramOverweightCharge, nationalRateKilograms, nationalKilogramOverweightCharge, localBaseRate, localFuelSurcharge, regionalBaseRate, regionalFuelSurcharge, nationalBaseRate, nationalFuelSurcharge, localDimensionRate, localDimensionOverweightCharge, regionalDimensionRate, regionalDimensionOverweightCharge, nationalDimensionRate, nationalDimensionOverweightCharge, residentialDeliveryFee, signatureRequired, packageRedeliveryFee, dangerousGoodsHandlingFee, specialHandlingFee, saturdayDeliveryFee, holidayDeliveryFee, weekendPickupFee, nonStandardPickupFee, } = req.body;
 
 		let cloudinaryResponse = null;
 
@@ -51,18 +63,14 @@ export const createCourier = async (req, res) => {
 
 		const courier = await Courier.create({
 			courierService,
-			baseRate,
-			contactNumber,
-			contactName,
-			businessEmail,
-			website,
-			province,
-			country,
 			description,
-			price,
 			image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
-			eta,
-		});
+			localMaxKilometers, localRateKilometers, regionalMaxKilometers, regionalRateKilometers, nationalMaxKilometers, nationalRateKilometers, 
+			localRateKilograms, localKilogramOverweightCharge, regionalRateKilograms, regionalKilogramOverweightCharge, nationalRateKilograms, nationalKilogramOverweightCharge,
+			localBaseRate, localFuelSurcharge, regionalBaseRate, regionalFuelSurcharge, nationalBaseRate, nationalFuelSurcharge,
+			localDimensionRate, localDimensionOverweightCharge, regionalDimensionRate, regionalDimensionOverweightCharge, nationalDimensionRate, nationalDimensionOverweightCharge,
+			residentialDeliveryFee, signatureRequired, packageRedeliveryFee, dangerousGoodsHandlingFee, specialHandlingFee, saturdayDeliveryFee, holidayDeliveryFee, weekendPickupFee, nonStandardPickupFee,
+		}); 
 
 		res.status(201).json(courier);
 	} catch (error) {
@@ -71,6 +79,7 @@ export const createCourier = async (req, res) => {
 	}
 };
 
+// Delete a courier
 export const deleteCourier = async (req, res) => {
 	try {
 		const courier = await Courier.findById(req.params.id);
@@ -83,9 +92,9 @@ export const deleteCourier = async (req, res) => {
 			const publicId = courier.image.split("/").pop().split(".")[0];
 			try {
 				await cloudinary.uploader.destroy(`couriers/${publicId}`);
-				console.log("deleted image from cloduinary");
+				console.log("deleted image from Cloudinary");
 			} catch (error) {
-				console.log("error deleting image from cloduinary", error);
+				console.log("Error deleting image from Cloudinary", error);
 			}
 		}
 
@@ -98,27 +107,24 @@ export const deleteCourier = async (req, res) => {
 	}
 };
 
+// Get recommended couriers (random sample)
 export const getRecommendedCouriers = async (req, res) => {
 	try {
 		const couriers = await Courier.aggregate([
 			{
-				$sample: { size: 4 },
+				$sample: { size: 4 },  // Sample 4 random couriers
 			},
 			{
 				$project: {
 					_id: 1,
 					courierService: 1,
-					baseRate: 1,
-					contactNumber: 1,
-					contactName: 1,
-					businessEmail: 1,
-					website: 1,
-					province: 1, 
-					country: 1,
 					description: 1,
 					image: 1,
-					price: 1,
-					eta: 1, 
+					localMaxKilometers: 1, localRateKilometers: 1, regionalMaxKilometers: 1, regionalRateKilometers: 1, nationalMaxKilometers: 1, nationalRateKilometers: 1,
+					localRateKilograms: 1, localKilogramOverweightCharge: 1, regionalRateKilograms: 1, regionalKilogramOverweightCharge: 1, nationalRateKilograms: 1, nationalKilogramOverweightCharge: 1,
+					localBaseRate: 1, localFuelSurcharge: 1, regionalBaseRate: 1, regionalFuelSurcharge: 1, nationalBaseRate: 1, nationalFuelSurcharge: 1,
+					localDimensionRate: 1, localDimensionOverweightCharge: 1, regionalDimensionRate: 1, regionalDimensionOverweightCharge: 1, nationalDimensionRate: 1, nationalDimensionOverweightCharge: 1,
+					residentialDeliveryFee: 1, signatureRequired: 1, packageRedeliveryFee: 1, dangerousGoodsHandlingFee: 1, specialHandlingFee: 1, saturdayDeliveryFee: 1, holidayDeliveryFee: 1, weekendPickupFee: 1, nonStandardPickupFee: 1,
 				},
 			},
 		]);
@@ -130,6 +136,7 @@ export const getRecommendedCouriers = async (req, res) => {
 	}
 };
 
+// Get couriers by ETA (estimated time of arrival)
 export const getCouriersByEta = async (req, res) => {
 	const { eta } = req.params;
 	try {
@@ -141,13 +148,14 @@ export const getCouriersByEta = async (req, res) => {
 	}
 };
 
+// Toggle featured status of a courier
 export const toggleFeaturedCourier = async (req, res) => {
 	try {
 		const courier = await Courier.findById(req.params.id);
 		if (courier) {
 			courier.isFeatured = !courier.isFeatured;
-			const updatedCourier = await courier.save();  
-			await updateFeaturedCouriersCache();
+			const updatedCourier = await courier.save();
+			await updateFeaturedCouriersCache();  // Update the cache after toggling the featured status
 			res.json(updatedCourier);
 		} else {
 			res.status(404).json({ message: "Courier not found" });
@@ -158,13 +166,12 @@ export const toggleFeaturedCourier = async (req, res) => {
 	}
 };
 
+// Helper function to update the featured couriers cache in Redis
 async function updateFeaturedCouriersCache() {
 	try {
-		// The lean() method  is used to return plain JavaScript objects instead of full Mongoose documents. This can significantly improve performance
-
 		const featuredCouriers = await Courier.find({ isFeatured: true }).lean();
 		await redis.set("featured_couriers", JSON.stringify(featuredCouriers));
 	} catch (error) {
-		console.log("error in update cache function");
+		console.log("Error in updateFeaturedCouriersCache", error);
 	}
 }

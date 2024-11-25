@@ -6,51 +6,180 @@ const courierSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    baseRate: {
-      type: Number,
-      min: 0,
-      required: true,
-    },
-    contactNumber: {
-      type: String,  // Phone number as a String to allow different formats
-      required: true,
-    },
-    contactName: {
-      type: String, // Store the contact person's name
-      required: true,
-    },
-    businessEmail: {
-      type: String,
-      required: true,
-    },
-    website: {
-    type: String,
-    required: true,
-  },
-    province: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
     description: {
       type: String,
       required: true,
     },
-    price: {
-      type: Number,
-      min: 0,
-      required: true,
+    localMaxKilometers: { 
+      type: Number, 
+      min: 1, 
+      required: true, 
+    }, 
+    localRateKilometers: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    regionalMaxKilometers: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    regionalRateKilometers: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalMaxKilometers: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalRateKilometers: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    localRateKilograms: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    localKilogramOverweightCharge: { 
+      type: Number, 
+      min: 1, 
+      required: true, 
+    }, 
+    regionalRateKilograms: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    regionalKilogramOverweightCharge: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalRateKilograms: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalKilogramOverweightCharge: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+
+    localBaseRate: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    localFuelSurcharge: { 
+      type: Number, 
+      min: 1, 
+      required: true, 
+    }, 
+    regionalBaseRate: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    regionalFuelSurcharge: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalBaseRate: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalFuelSurcharge: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+
+    localDimensionRate: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    localDimensionOverweightCharge: { 
+      type: Number, 
+      min: 1, 
+      required: true, 
+    }, 
+    regionalDimensionRate: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    regionalDimensionOverweightCharge: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalDimensionRate: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
+    nationalDimensionOverweightCharge: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
     },
+    residentialDeliveryFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    signatureRequired: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    packageRedeliveryFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    dangerousGoodsHandlingFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    specialHandlingFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    saturdayDeliveryFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    holidayDeliveryFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    weekendPickupFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    },
+    nonStandardPickupFee: { 
+      type: Number, 
+      min: 1, 
+      required: false, 
+    }, 
     image: {
       type: String,
       required: [true, "Image is required"],
-    },
-    eta: {
-      type: String,
-      required: true,
     },
     isFeatured: {
       type: Boolean,
