@@ -67,7 +67,7 @@ const Pricing = () => {
         </div>
       </div>
 
-      <Footer className="w-full mt-8" /> 
+      <Footer className="w-full mt-8 p-0" /> 
     </div>
   );
 };

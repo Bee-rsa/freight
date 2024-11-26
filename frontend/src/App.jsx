@@ -18,6 +18,8 @@ import AboutUs from "./pages/AboutUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Blog from "./pages/Blog";
+import HelpCenter from "./pages/HelpCenter";
+import ContactPage from "./pages/ContactPage";
 import TruckingPage from "./pages/TruckingPage";
 import OceanFreight from "./pages/OceanFreight";
 import CourierServices from "./pages/CourierServices";
@@ -91,16 +93,16 @@ function App() {
 
     const containerStyle = location.pathname === '/' 
         ? 'min-h-screen bg-white flex items-center justify-center' 
-        : 'min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-emerald-900 flex items-center justify-center relative overflow-hidden';
+        : 'min-h-screen bg-gradient-to-br from-gray-900 via-custom-blue to-blue-900 flex items-center justify-center relative overflow-hidden';
 
     return (
         <QueryClientProvider client={queryClient}> {/* Wrap your app here */}
             <div className={containerStyle}>
                 {showFloatingShapes && (
                     <>
-                        <FloatingShape color='bg-green-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
-                        <FloatingShape color='bg-emerald-500' size='w-48 h-48' top='70%' left='80%' delay={5} />
-                        <FloatingShape color='bg-lime-500' size='w-32 h-32' top='40%' left='-10%' delay={2} />
+                        <FloatingShape color='bg-custom-blue' size='w-64 h-64' top='-5%' left='10%' delay={0} />
+                        <FloatingShape color='bg-blue-700' size='w-48 h-48' top='70%' left='80%' delay={5} />
+                        <FloatingShape color='bg-blue-200' size='w-32 h-32' top='40%' left='-10%' delay={2} />
                     </>
                 )}
 
@@ -118,6 +120,8 @@ function App() {
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
                     <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
                     <Route path='/blog' element={<Blog />} />
+                    <Route path='/help-center' element={<HelpCenter />} />
+                    <Route path='/contact-page' element={<ContactPage />} />
                     <Route path='/trucking-page' element={<TruckingPage />} />
                     <Route path='/ocean-freight' element={<OceanFreight />} />
                     <Route path='/courier-services' element={<CourierServices />} />

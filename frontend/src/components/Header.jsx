@@ -173,7 +173,6 @@ const Header = () => {
             <Link to="/resources/docs/doc1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Guides</Link>
             <Link to="/blog" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Blog</Link>
             <Link to="/resources/docs/doc1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Market Updates</Link>
-            <Link to="/resources/docs/doc2" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Research</Link>
             <Link to="/resources/docs/doc1" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Case Study</Link>
             <Link to="/weight-calculator" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Weight Calculator</Link>
           </div>
@@ -198,6 +197,7 @@ const Header = () => {
         {expandedLink === "company" && (
           <div className="ml-6 mt-2 space-y-2 flex flex-col">
             <Link to="/about-us" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>About Us</Link>
+            <Link to="/contact-page" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Talk To An Expert</Link>
             <Link to="/privacy-policy" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Privacy Policy</Link>
             <Link to="/terms-and-conditions" className="text-custom-sage hover:text-gray-400 transition duration-300 text-lg font-poppins" onClick={handleLinkClick}>Terms & Conditions</Link>
           </div>

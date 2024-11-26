@@ -1,5 +1,5 @@
 
-import SignUp from './SignUpPage';
+import OperatorSignUp from './BusinessHubSignUp';
 import Header from "../components/Header"; 
 import Footer from "../components/Footer";
 
@@ -42,7 +42,7 @@ const TruckingPage = () => {
       <div style={contentContainerStyle}>
         {/* Operator Registration Section */}
         <aside style={operatorRegisterStyle}>
-          <SignUp />
+          <OperatorSignUp />
         </aside>
 
         {/* Main Content */}
@@ -206,14 +206,16 @@ const stepItemStyle = {
   marginBottom: '1rem',
   padding: '1rem',
   borderRadius: '4px',
-  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0 1px 3px rgba(1, 1, 1, 1)',
   fontFamily: 'Poppins, sans-serif',
 };
 
 const stepStrongStyle = {
   fontSize: '18px',
   fontWeight: 'bold',
+  color: '#000042', 
 };
+
 
 const stepParagraphStyle = {
   fontSize: '16px',
