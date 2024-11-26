@@ -9,12 +9,12 @@ const Policy = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center bg-white">
+    <div className="w-full flex flex-col items-center bg-gray-100">
       <Header />
 
       <div className="container mx-auto px-4 py-12 mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Table of Contents */}
-        <nav className="md:col-span-1 sticky top-16 h-auto shadow-lg rounded-lg p-4 max-h-screen overflow-y-auto border-2 border-custom-blue font-poppins">
+        <nav className="md:col-span-1 sticky top-16 h-auto shadow-lg rounded-lg p-4 max-h-screen overflow-y-auto border-2 bg-gray-200 border-custom-blue font-poppins">
           <h2 className="text-xl font-bold mb-4 text-gray-800 border-b-2 pb-2">Table of Contents</h2>
           <ul className="space-y-2">
             <li>
@@ -56,51 +56,78 @@ const Policy = () => {
         </nav>
 
         {/* Main Content */}
-        <div className="md:col-span-2 max-h-screen bg-gray-200 overflow-y-auto pr-4">
-          <h1 className="text-3xl font-bold mb-6 font-poppins">Privacy Policy for Freight iT</h1>
-          <p className="mb-4"><strong>Effective Date:</strong> [Insert Date]</p>
-          <p className="mb-4">
-            Freight iT (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you use our website and application (collectively, the &quot;Services&quot;). Please read this policy carefully. If you do not agree with the terms of this Privacy Policy, please do not access the Services.
-          </p>
+        <div className="md:col-span-2 max-h-screen overflow-y-auto pr-4">
+        <h1 className="text-3xl font-bold mb-6 font-poppins">Privacy Policy for Cargo Connect</h1>
+<p className="mb-4"><strong>Effective Date:</strong> [26 November 2024]</p>
+<p className="mb-4">
+  Cargo Connect (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you use our website and application (collectively, the &quot;Services&quot;). Please read this policy carefully. By accessing or using our Services, you agree to the collection and use of your information as outlined in this Privacy Policy. If you do not agree with the terms of this Privacy Policy, please do not access or use the Services.
+</p>
 
-          <h2 id="information" className="text-2xl font-bold mb-4 font-poppins">1. Information We Collect</h2>
-          <p className="mb-4">
-            We may collect information about you in a variety of ways, including: personal information when you register for our Services, such as your name, email address, phone number, company name, and address; payment information, including credit card numbers or other financial data when you make a payment; usage data, which may include your interactions with our Services, such as IP address, browser type, operating system, pages visited, and the time and date of your visits; and cookies and tracking technologies that track activity on our Services and store certain information.
-          </p>
+<h2 id="information" className="text-2xl font-bold mb-4 font-poppins">1. Information We Collect</h2>
+<p className="mb-4">
+  We may collect the following types of information:
+  <ul className="list-disc ml-8">
+    <li><strong>Personal Information:</strong> When you register for our Services, we may collect your name, email address, phone number, company name, address, and other contact information.</li>
+    <li><strong>Payment Information:</strong> This may include credit card numbers, bank account details, or other financial data when you make a payment for our Services.</li>
+    <li><strong>Usage Data:</strong> We collect information on how you use our Services, such as your IP address, browser type, operating system, pages visited, time spent on the Services, and other data regarding your interaction with our platform.</li>
+    <li><strong>Cookies and Tracking Technologies:</strong> We use cookies, web beacons, and similar technologies to track your activity on our Services and to collect information such as preferences and usage patterns.</li>
+  </ul>
+</p>
 
-          <h2 id="usage" className="text-2xl font-bold mb-4 font-poppins">2. How We Use Your Information</h2>
-          <p className="mb-4">
-            We use the information we collect in the following ways: to provide and maintain our Services by processing transactions, managing your account, and providing customer support; to improve our Services by analyzing your usage patterns to enhance user experience; to communicate with you by sending updates, newsletters, marketing materials, and other information that may be of interest to you, with an option to opt out of these communications; and to comply with legal obligations.
-          </p>
+<h2 id="usage" className="text-2xl font-bold mb-4 font-poppins">2. How We Use Your Information</h2>
+<p className="mb-4">
+  We use the information we collect for the following purposes:
+  <ul className="list-disc ml-8">
+    <li><strong>To provide and maintain our Services:</strong> This includes processing transactions, managing your account, and providing customer support.</li>
+    <li><strong>To improve our Services:</strong> We analyze your usage data to enhance our offerings and personalize your experience.</li>
+    <li><strong>To communicate with you:</strong> We may send you updates, newsletters, promotional materials, and other information that may be of interest to you. You may opt-out of marketing communications at any time.</li>
+    <li><strong>To comply with legal obligations:</strong> We may use your information to comply with applicable laws, regulations, and legal processes.</li>
+  </ul>
+</p>
 
-          <h2 id="disclosure" className="text-2xl font-bold mb-4 font-poppins">3. Disclosure of Your Information</h2>
-          <p className="mb-4">
-            We may share your information in the following circumstances: with third-party service providers who assist us in operating our Services, processing payments, or providing customer support; during business transfers, such as a merger, acquisition, or sale of all or a portion of our assets; and when required to do so by law or in response to valid requests by public authorities.
-          </p>
+<h2 id="disclosure" className="text-2xl font-bold mb-4 font-poppins">3. Disclosure of Your Information</h2>
+<p className="mb-4">
+  We may disclose your information in the following situations:
+  <ul className="list-disc ml-8">
+    <li><strong>Third-party service providers:</strong> We may share your information with vendors and service providers that help us operate our Services, process payments, or provide customer support.</li>
+    <li><strong>Business transfers:</strong> If we undergo a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
+    <li><strong>Legal compliance:</strong> We may disclose your information if required by law or in response to valid requests by government authorities, such as a subpoena or court order.</li>
+    <li><strong>Protection of rights:</strong> We may disclose your information to protect the rights, property, and safety of Cargo Connect, our users, or others, including investigating potential violations of our terms of service.</li>
+  </ul>
+</p>
 
-          <h2 id="security" className="text-2xl font-bold mb-4 font-poppins">4. Data Security</h2>
-          <p className="mb-4">
-            We take reasonable measures to protect the information we collect from loss, theft, misuse, and unauthorized access, disclosure, alteration, and destruction. However, no method of transmission over the Internet or method of electronic storage is 100% secure, and we cannot guarantee its absolute security.
-          </p>
+<h2 id="security" className="text-2xl font-bold mb-4 font-poppins">4. Data Security</h2>
+<p className="mb-4">
+  We employ reasonable administrative, technical, and physical safeguards to protect the information we collect. While we strive to protect your personal data, please understand that no method of transmission over the internet or method of electronic storage is 100% secure, and we cannot guarantee absolute security. By using our Services, you acknowledge and accept these risks.
+</p>
 
-          <h2 id="rights" className="text-2xl font-bold mb-4 font-poppins">5. Your Rights</h2>
-          <p className="mb-4">
-            You have certain rights regarding your personal information, including the right to access and receive a copy of your personal information; request correction of inaccurate or incomplete information; request deletion of your personal information, subject to certain exceptions; and opt out of marketing communications. To exercise these rights, please contact us using the contact information below.
-          </p>
+<h2 id="rights" className="text-2xl font-bold mb-4 font-poppins">5. Your Rights</h2>
+<p className="mb-4">
+  Depending on your jurisdiction, you may have the following rights regarding your personal information:
+  <ul className="list-disc ml-8">
+    <li><strong>Access:</strong> You have the right to request a copy of the personal information we hold about you.</li>
+    <li><strong>Correction:</strong> You may request that we correct any inaccuracies in your personal data.</li>
+    <li><strong>Deletion:</strong> You may request the deletion of your personal data, subject to certain legal exceptions.</li>
+    <li><strong>Opt-out of marketing:</strong> You have the right to opt-out of receiving marketing communications at any time.</li>
+    <li><strong>Data portability:</strong> In some cases, you may request the transfer of your personal information to another service provider.</li>
+  </ul>
+  To exercise any of these rights, please contact us using the contact information below.
+</p>
 
-          <h2 id="changes" className="text-2xl font-bold mb-4 font-poppins">6. Changes to This Privacy Policy</h2>
-          <p className="mb-4">
-            We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on our website and updating the effective date. You are advised to review this Privacy Policy periodically for any changes.
-          </p>
+<h2 id="changes" className="text-2xl font-bold mb-4 font-poppins">6. Changes to This Privacy Policy</h2>
+<p className="mb-4">
+  We may update our Privacy Policy from time to time. We will notify you of any significant changes by posting the updated Privacy Policy on our website and updating the effective date at the top of the policy. You are encouraged to review this Privacy Policy periodically to stay informed about how we protect your personal information.
+</p>
 
-          <h2 id="contact" className="text-2xl font-bold mb-4 font-poppins">7. Contact Us</h2>
-          <p className="mb-4">
-            If you have any questions or concerns about this Privacy Policy or our practices, please contact us at: 
-            <strong>Freight iT</strong><br />
-            [Your Company Address] <br />
-            Email: FreightiT@telkom.net<br />
-            Phone: 032 456 7208
-          </p>
+<h2 id="contact" className="text-2xl font-bold mb-4 font-poppins">7. Contact Us</h2>
+<p className="mb-4">
+  If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
+  <strong>Cargo Connect</strong><br />
+  [Your Company Address] <br />
+  Email: support@cargoconnect.com<br />
+  Phone: [Your Company Phone Number]<br />
+</p>
+
         </div>
       </div>
 

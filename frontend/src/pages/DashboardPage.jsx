@@ -52,16 +52,16 @@ const HomeSection = () => {
 
   return (
     <div className="w-full p-6">
-      <section className="bg-white p-6 mb-8 w-full">
+      <section className="bg-white p-2 mt-12 mb-8 w-full">
         <h2 className="text-3xl font-bold text-gray-800 mb-4 text-left custom-font font-poppins">
           How To Transport Your Cargo With Cargo Connect:
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-poppins">
-          {[{ img: step1Image, title: 'Register', desc: 'Create an account with Freight iT by providing your email and creating a secure password. This account will allow you to manage your shipments efficiently and access all features of our platform.' },
+          {[{ img: step1Image, title: 'Register', desc: 'Create an account with Cargo Connect by providing your email and creating a secure password. This account will allow you to manage your shipments efficiently and access all features of our platform.' },
             { img: step2Image, title: 'Get Instant Quotes', desc: 'Once registered, input your shipping details, including the dimensions and weight of your cargo. Our system will provide you with instant quotes from various carriers, ensuring you find the best price and service for your needs.' },
             { img: step3Image, title: 'Book & Track', desc: 'After selecting your preferred carrier based on the quotes, proceed to book your shipment. Make the payment securely and then track your shipment in real-time through our platform until it arrives at its destination.' },
           ].map((step, idx) => (
-            <div key={idx} className="flex flex-col items-start p-4 md:p-6 border rounded-lg bg-gray-50 w-full h-full">
+            <div key={idx} className="flex flex-col items-start p-4 md:p-6 border rounded-lg bg-gray-50 w-full h-full sm:w-full sm:h-auto sm:px-0">
               <img src={step.img} alt={`Step ${idx + 1}`} className="w-full h-60 object-cover mb-4" />
               <h3 className="font-semibold text-xl text-custom-blue font-poppins">Step {idx + 1}: {step.title}</h3>
               <p className="text-left mb-4 font-poppins">{step.desc}</p>

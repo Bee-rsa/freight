@@ -20,10 +20,12 @@ const Pricing = () => {
         {/* Pricing Plans */}
         <div className="flex flex-wrap justify-center sm:justify-between gap-8 w-full max-w-6xl mb-10">
           {/* Plan Cards */}
-          {["Economy", "Premium", "Enterprise"].map((plan, idx) => (
+          {["Economy", "Premium", "Enterprise"].map((plan) => (
             <div key={plan} className="flex-1 min-w-[250px] sm:min-w-[300px] md:min-w-[250px] lg:min-w-[300px] border border-gray-300 rounded-lg shadow-md p-6 flex flex-col items-center">
               <h2 className="text-2xl font-semibold text-custom-blue mb-4">{plan}</h2>
-              <p className="text-3xl font-bold text-gray-800 mb-2">ZAR {idx * 500 + 500}–{(idx + 1) * 1000}</p>
+              <p className="text-3xl font-bold text-gray-800 mb-2">
+                ZAR {plan === "Economy" ? "350" : plan === "Premium" ? "550" : "750"}
+              </p>
               <p className="text-sm text-gray-500 mb-6">/month</p>
               <p className="text-sm text-gray-600 mb-2">{plan === "Economy" ? "Standard listing, basic analytics, and limited visibility." : plan === "Premium" ? "Enhanced visibility, detailed analytics, customer matching, and marketing features." : "Full feature set, including real-time tracking integration, advanced analytics."}</p>
               <div className="border-b border-gray-300 w-full mb-2" />
