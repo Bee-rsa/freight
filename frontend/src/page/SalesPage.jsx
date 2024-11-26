@@ -8,7 +8,7 @@ const ProductsPage = () => {
       <Sidebar /> 
       
       {/* Main Content */}
-      <div className='flex-1 overflow-auto relative z-10 w-full'>
+      <div className='flex-1 flex flex-col overflow-y-auto'>
         <Header title='Pricing' />
 
         <div className="w-full flex flex-col items-center bg-white">

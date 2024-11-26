@@ -11,16 +11,15 @@ const BusinessHubSignUp = () => {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
-  const [consent, setConsent] = useState(false); // State for consent checkbox
+  const [consent, setConsent] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     try {
-      // Handle signup logic here (e.g., sending data to API)
       console.log("Sign Up data:", { firstName, lastName, email, phone, company, message, consent });
-      navigate("/operator-verify-email"); // Redirect after successful signup
+      navigate("/operator-verify-email");
     } catch (error) {
       console.log(error);
     }
@@ -33,14 +32,13 @@ const BusinessHubSignUp = () => {
       transition={{ duration: 0.5 }}
       className="min-h-screen w-full flex items-center justify-center"
     >
-      <div className="max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden mx-4 sm:mx-auto">
-        <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-blue-900 to-blue-600 text-transparent bg-clip-text">
+      <div className="max-w-sm w-full bg-gray-800 backdrop-filter backdrop-blur-xl rounded-xl mx-4">
+        <div className="p-4">
+          <h2 className="text-xl font-bold mb-3 text-center bg-gradient-to-r from-blue-900 to-blue-600 text-transparent bg-clip-text">
             Create Business Account
           </h2>
 
           <form onSubmit={handleSignUp}>
-            {/* First Name Input */}
             <Input
               icon={User}
               type="text"
@@ -50,7 +48,6 @@ const BusinessHubSignUp = () => {
               className="text-sm"
             />
 
-            {/* Last Name Input */}
             <Input
               icon={User}
               type="text"
@@ -60,7 +57,6 @@ const BusinessHubSignUp = () => {
               className="text-sm"
             />
 
-            {/* Email Input */}
             <Input
               icon={Mail}
               type="email"
@@ -70,7 +66,6 @@ const BusinessHubSignUp = () => {
               className="text-sm"
             />
 
-            {/* Phone Number Input */}
             <Input
               icon={Phone}
               type="text"
@@ -80,7 +75,6 @@ const BusinessHubSignUp = () => {
               className="text-sm"
             />
 
-            {/* Company Input */}
             <Input
               icon={User}
               type="text"
@@ -90,33 +84,29 @@ const BusinessHubSignUp = () => {
               className="text-sm"
             />
 
-            {/* Message Textarea */}
             <textarea
               placeholder="Enter your message here"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full mt-4 p-3 border border-gray-300 rounded-md text-sm"
+              className="w-full mt-2 h-40 p-2 text-black border border-gray-300 rounded-md text-sm"
             />
 
-            {/* Consent Checkbox */}
-            <div className="mt-4 flex items-center">
+            <div className="mt-3 flex items-center">
               <input
                 type="checkbox"
                 checked={consent}
                 onChange={() => setConsent(!consent)}
                 className="mr-2"
               />
-              <label className="text-sm text-gray-400">
+              <label className="text-xs text-gray-400">
                 I consent for Cargo Connect to maintain this information to handle my contact request and to inform me about industry updates.
               </label>
             </div>
 
-            {/* Submit Button */}
             <motion.button
-              className="mt-6 w-full py-2 px-3 bg-gradient-to-r from-custom-blue to-blue-600 text-white 
-                font-bold rounded-lg shadow-lg hover:from-custom-blue
-                hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                focus:ring-offset-gray-900 transition duration-200"
+              className="mt-4 w-full py-2 px-3 bg-gradient-to-r from-custom-blue to-blue-600 text-white 
+                font-bold rounded-md shadow-md hover:from-custom-blue hover:to-blue-700 focus:outline-none
+                focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200 text-sm"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
@@ -125,7 +115,7 @@ const BusinessHubSignUp = () => {
             </motion.button>
           </form>
         </div>
-        <div className="px-6 py-3 bg-gray-900 bg-opacity-50 flex justify-center">
+        <div className="px-4 py-2 bg-gray-900 bg-opacity-50 text-center">
           <p className="text-xs text-gray-400">
             Already have an account?{" "}
             <Link to={"/operator-login"} className="text-blue-600 hover:underline">

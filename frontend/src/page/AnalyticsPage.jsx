@@ -15,7 +15,7 @@ const AnalyticsPage = () => {
 			{/* Sidebar */}
 			<Sidebar />  {/* Sidebar component placed here */}
 
-			<div className='flex-1 overflow-auto font-poppins relative z-10 w-full'>
+			<div className='flex-1 flex flex-col overflow-y-auto'>
 				{/* Header */}
 				<Header title={"Analytics Dashboard"} />
 

@@ -22,7 +22,7 @@ const UsersPage = () => {
 			{/* Sidebar */}
 			<Sidebar /> {/* Add Sidebar component here */}
 
-			<div className='flex-1 overflow-auto relative z-10 w-full'>
+			<div className='flex-1 flex flex-col overflow-y-auto'>
 				{/* Header */}
 				<Header title='Users' />
 

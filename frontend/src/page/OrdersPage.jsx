@@ -19,7 +19,7 @@ const OrdersPage = () => {
 	return (
 		<div className='flex h-screen w-full overflow-hidden bg-white'>
 			<Sidebar /> {/* Sidebar component */}
-			<div className='flex-1 overflow-auto relative z-10 w-full'>
+			<div className='flex-1 flex flex-col overflow-y-auto'>
 				<Header title={"Orders"} />
 
 				<main className='max-w-7xl font-poppins mx-auto py-6 px-4 lg:px-8'>

@@ -380,6 +380,8 @@ const Header = () => {
                 <div className="absolute right-0 z-10 mt-2 w-48 bg-white rounded-md shadow-lg">
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/about-us">About Us</Link>
                   <div></div>
+                  <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/contact-page">Talk To An Expert</Link>
+                  <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/privacy-policy">Privacy Policy</Link>
                   <div></div>
                   <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-poppins" to="/terms-and-conditions">Terms & Conditions</Link>

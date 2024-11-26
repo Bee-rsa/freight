@@ -22,7 +22,7 @@ const OverviewPage = () => {
       <Sidebar /> {/* Render the Sidebar on the left */}
 
       {/* Main content */}
-      <div className='flex-1 overflow-auto relative z-40 w-full'>
+      <div className='flex-1 flex flex-col overflow-y-auto'>
         <Header title='Overview' />
         <main className='max-w-7xl font-poppins mx-auto py-6 px-4 lg:px-8 w-full'>
           {/* Conditional rendering based on operator */}
