@@ -44,15 +44,15 @@ const HomeSection = () => {
   const faqData = [
     { question: 'What is Cargo Connect?', answer: 'Cargo Connect is a platform designed to simplify your logistics needs by providing easy access to multiple carriers, instant quotes, and real-time shipment tracking.' },
     { question: 'How will Cargo Connect help my business?', answer: 'Cargo Connect helps streamline your shipping process by allowing you to compare rates, manage shipments, and track deliveries all in one place, making logistics hassle-free for your business.' },
-    { question: 'How do I register and sign up?', answer: 'To sign up, click on "Sign In" in the top right corner and select "Register." Complete the required fields and create your account to start using Cargo Connect.' },
+    { question: 'How do I register and sign up?', answer: 'To sign up, click on "Sign In" in the top right corner and select "Register." Complete the required fields and create your account to start using Freight iT.' },
     { question: 'I forgot my password. What should I do?', answer: 'If you forgot your password, go to the "Sign In" page and click on "Forgot Password." Follow the instructions to reset it.' },
     { question: 'How do I update my profile information?', answer: 'To update your profile, sign in and go to "My Account." From there, you can update your contact details, preferences, and other account information.' },
-    { question: 'How can I access my booking history?', answer: 'After signing in, go to "My Bookings" to view your past shipments, track current ones, and see details for each booking.' },
+    { question: 'How can I access my booking history?', answer: 'After signing in, go to "My Bookings" to view your past shipments, track current ones, and see details for each booking.' }
   ];
 
   return (
-    <div className="container w-full sm-w-full p-6">
-      <section className="bg-white p-0 mb-8 sm-w-full w-full">
+    <div className="w-full p-6">
+      <section className="bg-white p-6 mb-8 w-full">
         <h2 className="text-3xl font-bold text-gray-800 mb-4 text-left custom-font font-poppins">
           How To Transport Your Cargo With Cargo Connect:
         </h2>
