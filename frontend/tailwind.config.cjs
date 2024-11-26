@@ -7,7 +7,14 @@ module.exports = {
         serif: ['Georgia', 'serif'],   // Add your serif font here, e.g., Georgia
         poppins: ['Poppins', 'sans-serif'], // Add the Poppins font
       },
-      
+      container: {
+        padding: {
+          sm: "2rem",  // Add for small screens
+          md: "2rem", // Keep for medium screens
+          lg: "2rem",  // Example for large screens
+          xl: "2rem",  // Example for extra large screens
+        },
+      },
       colors: {
         'custom-blue': '#000042', // Add your custom color here
         'custom-sage': '#e79f31',

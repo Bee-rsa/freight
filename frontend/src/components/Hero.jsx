@@ -1,43 +1,45 @@
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import rightImage from '../assets/rb_2147680890.png';
-import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="w-full h-auto min-h-screen flex flex-col items-center bg-custom-blue p-6 pt-20">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-poppins font-bold text-center w-full mt-14 text-white whitespace-normal">
-        Seamless Shipping Simplified
-      </h1>
-      <div className="flex flex-col md:flex-row w-full max-w-screen-xl mx-auto items-center justify-between"> {/* Updated to justify-between */}
-        
-        {/* Text Description and Buttons */}
-        <div className="w-full md:w-1/2 p-0 flex flex-col items-center md:items-end ml-16 mt-16 text-center md:text-center"> {/* Changed items-start to items-end and text-left to text-right */}
-          <h1 className="text-xl sm:text-3xl md:text-4xl font-poppins text-custom-sage mb-2 px-4">
-            For all your transport needs,<br /> Let Freight iT handle iT.
+    <div className="bg-custom-blue text-white font-poppins mt-12 h-screen flex items-center justify-center px-4">
+      <div className="max-w-screen-xl w-full mx-auto flex flex-col md:flex-row items-center">
+        {/* Text Section */}
+        <div className="flex-1 text-center px-4">
+          <h1 className="text-3xl md:text-6xl font-bold mb-4 leading-tight">
+            Seamless Shipping Simplified
           </h1>
-          <p className="text-base sm:text-xl font-poppins text-gray-100 mb-4 px-4">
-            Freight iT makes shipping simple and seamless. Get instant quotes, book easily, and track shipments in real time - all in one place. Reliable carriers, competitive rates, and a smooth experience every step of the way.
+          <h2 className="text-2xl md:text-3xl font-semibold text-custom-sage mb-6">
+            For all your transport needs, <br />
+            Let Cargo Connect handle iT.
+          </h2>
+          <p className="text-m md:text-xl text-white mb-8 max-w-lg mx-auto">
+            Cargo Connect makes shipping simple and seamless. Get instant quotes, book easily, and
+            track shipments in real time - all in one place. Reliable carriers, competitive rates,
+            and a smooth experience every step of the way.
           </p>
-          {/* Modern Classy Buttons */}
-          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4"> 
+          {/* Buttons */}
+          <div className="flex flex-col md:flex-row justify-center gap-4">
             <Link to="/login">
-              <button className="bg-custom-sage text-white font-poppins font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 hover:bg-white hover:text-custom-sage border border-custom-sage transform hover:scale-105">
+              <button className="bg-white text-custom-blue py-2 px-4 rounded-lg shadow hover:bg-gray-200 transition">
                 Compare Instant Quotes
               </button>
             </Link>
-            <Link to="/operator-sign-in">
-              <button className="bg-transparent border-2 border-custom-sage text-custom-sage font-poppins font-semibold py-3 px-8 rounded-full transition duration-300 hover:bg-custom-sage hover:text-white transform hover:scale-105">
+            <Link to="/operator-login">
+              <button className="bg-custom-sage text-white py-2 px-4 rounded-lg shadow hover:bg-yellow-600 transition">
                 Business Solutions
               </button>
             </Link>
           </div>
         </div>
 
-        {/* Right Image */}
-        <div className="w-full md:w-1/2 flex ml-52 justify-start items-center mt-12"> {/* Changed justify-center to justify-start */}
+        {/* Image Section */}
+        <div className="flex-1 mt-8 md:mt-0 px-4 hidden md:block">
           <img
             src={rightImage}
-            alt="Right Image"
-            className="w-4/5 md:w-4/5 object-contain" // Smaller width for reduced size
+            alt="Freight Solutions"
+            className="w-full max-w-md md:max-w-lg mx-auto"
           />
         </div>
       </div>
