@@ -39,12 +39,12 @@ const Header = () => {
 };
 
   return (
-    <header     className="fixed top-0 py-2 left-0 w-full bg-custom-blue shadow-lg border-b border-gray-700 z-50">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <div className="text-2xl text-white font-extrabold tracking-tight">
-            <Link to="/">Cargo Connect</Link>
-          </div>
+    <header className="fixed top-0 py-2 left-0 w-full bg-custom-blue shadow-lg border-b border-gray-700 z-50">
+  <div className="mx-auto px-4 md:px-6 lg:px-8"> 
+    <div className="flex items-center justify-between"> 
+      <div className="text-2xl text-white font-extrabold tracking-tight">
+        <Link to="/">Cargo Connect</Link>
+      </div>
 
           {/* Mobile Menu Toggle Button */}
           <button

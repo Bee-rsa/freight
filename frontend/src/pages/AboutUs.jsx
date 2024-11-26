@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import freightImage from "../assets/african-american-young-woman-package-delivery-concept.jpg";
+import freightImage from "../assets/premium_photo-1661963455086-8fbd8a330cd5.jpeg";
+import Image2 from "../assets/transportation-related-objects-and-elements-hand-drawn-vector-doodle-illustration-collection.jpg";
 import additionalImage from "../assets/20241012_010803.jpg";
+import newsletterImage from '../assets/empty-business-entrepreneur-office-setup-home-with-personal-computer_482257-91126.jpg'; // Newsletter image
 import { FaTruck, FaUsers, FaDollarSign, FaRetweet } from 'react-icons/fa';
 import Header from "../components/Header"; // Adjust the path as necessary
 import Footer from "../components/Footer"; 
@@ -48,7 +50,7 @@ const AboutFreightIT = () => {
   };
 
   return (
-    <div className="bg-white p-6"> 
+    <div className="bg-white w-full p-0"> 
       <Header /> 
       <div className="pt-8 md:pt-10"></div> 
       <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-12 p-6 md:p-12">
@@ -66,37 +68,52 @@ const AboutFreightIT = () => {
         </div>
       </div>
 
-      <div className="bg-gray-300 text-left mt-8 p-6 rounded-lg shadow-md">
-        <p className="text-lg md:text-xl font-bold max-w-3xl mx-auto font-poppins p-4 md:p-8">
-          Freight iT provides a comprehensive logistics network: tech-enabled freight services that empower enterprises to streamline and enhance their supply chains for sustainable growth.
+      <div className="bg-white text-left mt-4 p-4 w-full flex items-center justify-between">
+      {/* Left Image */}
+      <div className="w-full md:w-1/2 flex justify-start">
+        <img
+          src={Image2}
+          alt="Logistics Network"
+          className="w-full object-contain"
+        />
+      </div>
+      
+      {/* Text Content */}
+      <div className="w-full md:w-1/2">
+        <p className="text-lg md:text-xl text-custom-sage before:max-w-3xl mx-auto mt-0 font-poppins p-4 md:p-8">
+          Cargo Connect provides a comprehensive logistics network: tech-enabled freight services that empower enterprises to streamline and enhance their supply chains for sustainable growth.
         </p>
-        <p className="text-lg md:text-xl max-w-3xl mx-auto mt-0 font-poppins p-4 md:p-8">
-          Our single technology integration connects businesses with a diverse range of logistics providers across multiple regions. Founded with a vision to transform the freight industry, Freight iT brings extensive logistics expertise and advanced technology to deliver innovative solutions for freight booking, tracking, and distribution.
+        <p className="text-lg md:text-xl text-custom-blue before:max-w-3xl mx-auto mt-0 font-poppins p-4 md:p-8">
+          Our single technology integration connects businesses with a diverse range of logistics providers across multiple regions. 
+          Founded with a vision to transform the freight industry, Freight iT brings extensive logistics expertise and advanced technology 
+          to deliver innovative solutions for freight booking, tracking, and distribution.
         </p>
       </div>
+    </div>
 
-      <div className="mt-8 px-6 md:px-12 p-6 md:p-12 flex flex-col md:flex-row justify-between bg-gray-100 rounded-lg shadow-md">
-        <div className="flex flex-col items-center md:w-1/4 p-4 md:p-8">
-          <FaTruck className="text-5xl md:text-6xl text-blue-500" />
-          <div className="text-3xl md:text-4xl mt-2">{totalShipments.toLocaleString()}</div>
-          <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Total Shipments</div>
-        </div>
-        <div className="flex flex-col items-center md:w-1/4 p-4 md:p-8">
-          <FaUsers className="text-5xl md:text-6xl text-blue-500" />
-          <div className="text-3xl md:text-4xl mt-2">{totalCarriers}</div>
-          <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Total Carriers</div>
-        </div>
-        <div className="flex flex-col items-center md:w-1/4 p-4 md:p-8">
-          <FaDollarSign className="text-5xl md:text-6xl text-blue-500" />
-          <div className="text-3xl md:text-4xl mt-2">{averageCostSavings}%</div>
-          <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Average Cost Savings</div>
-        </div>
-        <div className="flex flex-col items-center md:w-1/4 p-4 md:p-8">
-          <FaRetweet className="text-5xl md:text-6xl text-blue-500" />
-          <div className="text-3xl md:text-4xl mt-2">{customerRetention}%</div>
-          <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Customer Retention</div>
-        </div>
-      </div>
+      <div className="mt-8 px-16 md:px-12 p-16 md:p-12 flex flex-col md:flex-row justify-between bg-gray-100 rounded-lg shadow-md">
+  <div className="flex flex-col items-center md:w-1/4 p-8 md:p-8">
+    <FaTruck className="text-5xl md:text-6xl text-blue-500" />
+    <div className="text-3xl md:text-4xl mt-2">{totalShipments.toLocaleString()}</div>
+    <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Total Shipments</div>
+  </div>
+  <div className="flex flex-col items-center md:w-1/4 p-4 md:p-8">
+    <FaUsers className="text-5xl md:text-6xl text-blue-500" />
+    <div className="text-3xl md:text-4xl mt-2">{totalCarriers}</div>
+    <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Total Carriers</div>
+  </div>
+  <div className="flex flex-col items-center md:w-1/4 p-4 md:p-8">
+    <FaDollarSign className="text-5xl md:text-6xl text-blue-500" />
+    <div className="text-3xl md:text-4xl mt-2">{averageCostSavings}%</div>
+    <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Average Cost Savings</div>
+  </div>
+  <div className="flex flex-col items-center md:w-1/4 p-4 md:p-8">
+    <FaRetweet className="text-5xl md:text-6xl text-blue-500" />
+    <div className="text-3xl md:text-4xl mt-2">{customerRetention}%</div>
+    <div className="mt-2 text-lg md:text-xl font-poppins font-semibold">Customer Retention</div>
+  </div>
+</div>
+
 
       <div className="mt-8 flex flex-col md:flex-row items-center justify-between px-6 md:px-12 p-6 md:p-12">
         <div className="md:w-1/2 mb-4 md:mb-0 p-4 md:p-8">
@@ -136,19 +153,37 @@ const AboutFreightIT = () => {
         </div>
       </div>
 
-      <div className="mt-8 px-6 md:px-12 p-6 md:p-12 bg-gray-100 rounded-lg shadow-md text-center md:w-1/2">
-        <h2 className="text-3xl md:text-4xl font-poppins mb-4">Subscribe to Our Newsletter</h2>
-        <p className="mb-4">Stay updated with the latest news and offers from Freight iT!</p>
-        <form onSubmit={handleSubscribe} className="flex flex-col md:flex-row items-center justify-center">
-          <input 
+      <div className="mt-16 mb-16 px-6 md:px-12 py-6 md:py-12 flex flex-col md:flex-row items-center justify-center gap-8">
+      {/* Left Image (visible only on larger screens) */}
+      <div className="flex-1 hidden md:block">
+        <img
+          src={newsletterImage}
+          alt="Newsletter"
+          className="w-full h-48 object-cover rounded-lg"
+        />
+      </div>
+      
+      {/* Right Text and Form */}
+      <div className="flex-2 text-center">
+        <h2 className="text-3xl md:text-4xl font-poppins mb-6 text-gray-800">
+          Subscribe to Our Newsletter
+        </h2>
+        <p className="text-lg md:text-xl text-gray-700 mb-8">
+          Stay updated with the latest news and insights in the freight and logistics industry.
+        </p>
+        <form onSubmit={handleSubscribe} className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <input
             type="email"
-            placeholder="Enter your email"
+            placeholder="Your email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="p-2 md:p-4 border border-gray-300 font-poppins rounded-md md:w-2/3 mb-4 md:mb-0 md:mr-4"
+            className="p-3 md:p-4 border border-gray-300 rounded-md w-10/12 md:w-2/3 text-base font-poppins"
             required
           />
-          <button type="submit" className="bg-blue-500 text-white p-2 md:p-4 font-poppins rounded-md">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-3 px-8 rounded-md shadow-md mt-4 md:mt-0"
+          >
             Subscribe
           </button>
         </form>
@@ -156,7 +191,8 @@ const AboutFreightIT = () => {
           <p className="mt-4 text-green-500">Thank you for subscribing!</p>
         )}
       </div>
-      <Footer /> 
+      </div>
+      <Footer className="w-full mt-8 p-0" />
     </div>
   );
 };
