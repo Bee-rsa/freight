@@ -20,7 +20,7 @@ const blogPosts = [
     title: "The Future of Freight Transport",
     image: postImage1,
     excerpt: "Exploring the advancements in technology that are shaping the future of freight transport.",
-    link: "#",
+    link: "/future-of-freight",
   },
   {
     id: 2,

@@ -18,6 +18,7 @@ import AboutUs from "./pages/AboutUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Blog from "./pages/Blog";
+import FutureOfFreight from "./pages/FutureOfFreight";
 import HelpCenter from "./pages/HelpCenter";
 import ContactPage from "./pages/ContactPage";
 import TruckingPage from "./pages/TruckingPage";
@@ -119,7 +120,8 @@ function App() {
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
                     <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
-                    <Route path='/blog' element={<Blog />} />
+                    <Route path='/blog' element={<Blog />} /> 
+                    <Route path='/future-of-freight' element={<FutureOfFreight />} /> 
                     <Route path='/help-center' element={<HelpCenter />} />
                     <Route path='/contact-page' element={<ContactPage />} />
                     <Route path='/trucking-page' element={<TruckingPage />} />
